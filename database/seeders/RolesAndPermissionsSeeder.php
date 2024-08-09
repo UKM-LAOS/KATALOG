@@ -20,7 +20,7 @@ class RolesAndPermissionsSeeder extends Seeder
         }
 
         $roles = [
-            'User' => [],
+            'Toko' => [],
             'Admin' => [],
         ];
 

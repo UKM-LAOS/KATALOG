@@ -60,7 +60,7 @@ class UserController extends Controller
             case 'Admin':
                 $permissions = [];
                 break;
-            case 'User':
+            case 'Toko':
                 $permissions = [];
                 break;
         }
