@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tokos', function (Blueprint $table) {
             $table->id();
             $table->string('namatoko')->unique();
+            $table->foreignId('iduser')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('linktoko');
             $table->text('deskripsitoko');
             $table->date('tglgabung');

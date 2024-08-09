@@ -16,6 +16,16 @@ class Produk extends Model
         'linkproduk',
         'fotoproduk',
         'tglposting',
-        'statusdisplay'
+        'statusdisplay',
+        'idkategori',
+        'idtoko'
     ];
+
+    public function kategoris(){
+        return $this->hasMany(Kategori::class);
+    }
+
+    public function tokos(){
+        return $this->hasMany(Toko::class);
+    }
 }
