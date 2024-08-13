@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 export default {
     content: [
         "./resources/**/*.blade.php",
@@ -6,7 +8,90 @@ export default {
         "./resources/**/*.vue",
     ],
     theme: {
-        extend: {},
+        extend: {
+            spacing: {
+                "8%": "8%",
+                1.5: "1.5vh",
+                2: "2vw",
+                3: "3vw",
+                "5vh": "5vh",
+                21: "21vh",
+                30: "30vh",
+                logos: "17vw",
+                view: "1.9vw",
+                spacenav: "3.6vw",
+                search: "2vh",
+                searchs: "17.2vw",
+                spacbut: "0.5vw",
+                wbutnav: "8vw",
+                butmain: "22vw",
+                headermain: "12vh",
+                Head1: "5vh",
+                Head2: "14.5vh",
+                Spacebox: "8vw",
+                bloxspac: "13.8vh",
+                zero: "0vh",
+                one: "1vh",
+            },
+            padding: {
+                0.2: "0.2vh",
+                "1.6vw": "1.6vw",
+                yi: "1vh",
+                spanput: "1vw",
+                input: "4.1vw",
+                boxh: "5vh",
+            },
+            fontSize: {
+                1.2: "1.2vw",
+                1.4: "1.4vw",
+                big: "3.2vw",
+                normal: "1.6vw",
+                nav: "1.6vw",
+                input: "1vw",
+                placenav: "1.1vw",
+                butnav: "1.7vw",
+                overbig: "1.9vw",
+            },
+            width: {
+                7: "7vw",
+                "8%": "8%",
+                "15%": "15%",
+                width: "5vw",
+                searchimg: "1.7vw",
+                wx: "52vw",
+                "18vw": "18vw",
+            },
+            height: {
+                7: "7vh",
+                hx: "42vh",
+                0.4: "0.4vh",
+                "11.5vh": "11.5vh",
+                input: "8vh",
+                nav: "20vh",
+            },
+            fontFamily: {
+                sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+                all: ["Verdana", "sans-serif"],
+            },
+            borderRadius: {
+                "15px": "15px",
+            },
+            colors: {
+                primary: "#FFFFFF",
+                secondary: "#2C4156",
+                seconhvr: "#444",
+                yellowbut: "#FAA832",
+                hvryellow: "#FFC47F",
+                shadow: "#D2D7DB",
+                bluebut: "#7F99B2",
+                hvrblue: "#B5C8DA",
+                iconstyle: "#39586D",
+                greys: "#99A0AA",
+            },
+            borderRadius: {
+                input: "1vw", // Nilai kustom
+            },
+        },
     },
     plugins: [],
 };
