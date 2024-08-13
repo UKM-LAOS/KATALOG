@@ -11,6 +11,7 @@ export default {
         extend: {
             spacing: {
                 "8%": "8%",
+                "9%": "9%",
                 0: "0vh", //Zero
                 0.5: "0.5vw", // spacbut
                 1: "1vh", //One
@@ -37,6 +38,7 @@ export default {
                 1: "1vh", //yi
                 1: "1vw", //spanput
                 4.1: "4.1vw", //input
+                "5.5": "5.5vw",
                 5: "5vh", //boxh
             },
             fontSize: {
@@ -45,6 +47,7 @@ export default {
                 1.4: "1.4vw",
                 3.2: "3.2vw", //bigsize
                 1.6: "1.6vw", //normal nav
+                1.7: "1.7vw",
                 1: "1vw", //input
                 1.7: "1.7vw", //butnav
                 1.9: "1.9vw", //overbig
@@ -63,6 +66,7 @@ export default {
                 7: "7vh",
                 8: "8vh", //input
                 11.5: "11.5vh", //11.5vh
+                19: "19vh",
                 20: "20vh", //nav
                 42: "42vh", //hx
             },
