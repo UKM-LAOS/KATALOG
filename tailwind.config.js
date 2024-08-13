@@ -17,8 +17,8 @@ export default {
                 1: "1vh", //One
                 1.5: "1.5vh",
                 1.9: "1.9vw", //View
-                2: "2vw",
-                2: "2vh", //Search
+                "2w": "2vw",
+                "2h": "2vh", //Search
                 3: "3vw",
                 3.6: "3.6vw", //Spacenav
                 "5vh": "5vh", //Head1
@@ -35,8 +35,8 @@ export default {
             padding: {
                 0.2: "0.2vh",
                 "1.6vw": "1.6vw",
-                1: "1vh", //yi
-                1: "1vw", //spanput
+                "1h": "1vh", //yi
+                "1w": "1vw", //spanput
                 4.1: "4.1vw", //input
                 "5.5": "5.5vw",
                 5: "5vh", //boxh
