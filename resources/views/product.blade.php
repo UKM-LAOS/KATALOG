@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <x-navigasi></x-navigasi>
+    <x-navigasi/>
     <title>Produk</title>
 </head>
 
@@ -13,7 +13,7 @@
 
     <div class="container mx-auto py-8 mt-20">
         <div class="flex">
-            <!-- Sidebar Filter -->
+            <!-- Filter Sidebar -->
             <div class="w-1/4 p-4 bg-white shadow rounded-lg">
                 <h2 class="text-xl font-semibold mb-4">Filter</h2>
                 <div class="mb-4">
@@ -40,16 +40,18 @@
 
             <!-- Produk List -->
             <div class="w-3/4 grid grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-                <!-- Produk 1 -->
-                <x-cardProduk></x-cardProduk>
-                <!-- Produk 2 -->
-                <x-cardProduk></x-cardProduk>
-                <!-- Produk 3 -->
-                <x-cardProduk></x-cardProduk>
-                <x-cardProduk></x-cardProduk>
-                <x-cardProduk></x-cardProduk>
-                <x-cardProduk></x-cardProduk>
-                <!-- dan lain lain -->
+
+                <!-- Produk -->
+                <x-cardProduct></x-cardProduct>
+                <x-cardProduct></x-cardProduct>
+                <x-cardProduct></x-cardProduct>
+                <x-cardProduct></x-cardProduct>
+                <x-cardProduct></x-cardProduct>
+                <x-cardProduct></x-cardProduct>
+                <x-cardProduct></x-cardProduct>
+                <x-cardProduct></x-cardProduct>
+                <!-- Produk -->
+
             </div>
         </div>
     </div>

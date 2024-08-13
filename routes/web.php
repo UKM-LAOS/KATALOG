@@ -18,3 +18,7 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/detail-product', function () {
+    return view('detailProduct');
+});
+
