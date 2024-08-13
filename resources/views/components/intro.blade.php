@@ -1,4 +1,4 @@
-<div class="container mx-auto px-full py-[6vh] bg-primary">
+<div class="container mx-auto px-full py-[6vh] bg-primary mb-[2vh]">
     <div class="top-0 left-0 w-full h-[0.1vh] bg-gray-300"> </div>
     <h1 class="text-secondary text-[3.2vw] mt-[4vh] font-medium tracking-wider text-center">Tentang Kami</h1>
     <div class="mr-[10vw] ml-[10vw]">

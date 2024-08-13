@@ -12,5 +12,6 @@
     <x-main></x-main>
     <x-producthome></x-producthome>
     <x-intro></x-intro>
+    <x-footer></x-footer>
 </body>
 </html>
