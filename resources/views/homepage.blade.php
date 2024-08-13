@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    <x-navbar></x-navbar>
+    <x-navigasi></x-navigasi>
 </body>
 </html>
