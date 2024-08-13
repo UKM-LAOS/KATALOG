@@ -11,5 +11,6 @@
     <x-navigasi></x-navigasi>
     <x-main></x-main>
     <x-producthome></x-producthome>
+    <x-intro></x-intro>
 </body>
 </html>

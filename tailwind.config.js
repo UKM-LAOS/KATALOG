@@ -21,7 +21,9 @@ export default {
                 "2h": "2vh", //Search
                 3: "3vw",
                 3.6: "3.6vw", //Spacenav
+                4 : "4vh",
                 "5vh": "5vh", //Head1
+                7 : "7vh",
                 8: "8vw", //wbutnav spacebox
                 12: "12vh", //headermain
                 13.8: "13.8vh", //bloxspax
@@ -40,6 +42,7 @@ export default {
                 4.1: "4.1vw", //input
                 "5.5": "5.5vw",
                 5: "5vh", //boxh
+                64: "18vh",
             },
             fontSize: {
                 1.1: "1.1vw", //place nav
