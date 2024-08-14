@@ -8,7 +8,7 @@
     <title>Detail Produk</title>
     <x-navigasi/>
 </head>
-<body class="bg-gray-100">
+<body class="bg-white">
 
 <div class="container mx-auto py-8 mt-20">
     <div class="flex">
@@ -21,7 +21,7 @@
         <div class="w-2/3 pl-8">
             <span class="bg-teal-900 text-white text-xs font-semibold px-2 py-0.5 rounded-full inline-block mb-2">Laptop</span>
             <h1 class="text-3xl font-semibold mb-2">Laptop Gaming Pro++</h1>
-            <p class="inline-block text-1xl text-white bg-teal-900 py-0.5 px-2 rounded-full mb-4">RP.12.000.000</p>
+            <p class="inline-block text-1xl text-white bg-teal-900 rounded-full mb-4 py-0.2 px-1w">RP.12.000.000</p>
 
             <h2 class="text-xl font-semibold mb-2">Overview</h2>
             <p class="text-gray-600 mb-4">Overview of Laptop Gaming Pro++</p>
@@ -33,7 +33,7 @@
                 <li>3. Desain stylish.</li>
             </ul>
 
-            <a href="#" class="text-xl inline-block text-center bg-teal-900 text-white py-2 px-32 rounded-lg mb-4">Menuju Link >></a>
+            <a href="#" class="text-xl block text-center bg-teal-900 text-white rounded-lg py-2 mb-4">Menuju Link >></a>
         </div>
     </div>
 </div>

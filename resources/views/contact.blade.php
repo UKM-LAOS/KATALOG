@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <x-navigasi/>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
+<body class="bg-white flex items-center justify-center h-screen">
 
     <!-- Container -->
     <div class="relative bg-blue-500 w-full max-w-lg rounded-lg shadow-lg p-8">
