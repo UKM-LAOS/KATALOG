@@ -5,7 +5,7 @@
         <h2 class="text-primary font-inter text-[3.2vw] tracking-wider font-medium mb-[5vh]">Selamat Datang di KATALOG!</h2>
         <h2 class="text-primary font-sans text-[1.6vw] tracking-wider font-medium">Temukan Berbagai Pilihan Gadget Terkini dan Berbagai Toko Terpercaya</h2>
         <h2 class="text-primary font-sans text-[1.6vw] tracking-wider font-medium mb-[5vh]">dan Jadikan Kehidupan Digitalmu Lebih Seru!</h2>
-        <button class="font-all w-[18rem] h-[5rem] text-xl bg-yellowbut text-[1.9vw] font-semibold text-white rounded-1 cursor-pointer hover:bg-hvryellow">Selengkapnya</button>
+        <button class="font-sans w-[18rem] h-[5rem] text-[1.7rem] bg-yellowbut font-bold text-white rounded-1 cursor-pointer hover:bg-hvryellow">Selengkapnya</button>
     </div>
 </main>
 
