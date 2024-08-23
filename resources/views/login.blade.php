@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 
-<body class="h-screen w-screen" x-data="{ login: true }">
+<body class="h-full w-full" x-data="{ login: true }">
     <div x-show="login" class="bg-[#2C4156] grid grid-cols-2 h-full w-full">
         
         
