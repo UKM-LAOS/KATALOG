@@ -11,12 +11,12 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 
-<body class="h-full w-full" x-data="{ login: true }">
+<body class="h-screen w-screen" x-data="{ login: true }">
     <div x-show="login" class="bg-[#2C4156] grid grid-cols-2 h-full w-full">
         
         
         <!-- Left div -->
-        <div class="grid place-items-center">
+        <div class="grid h-full place-items-center">
             <img src="img/LoginLeft.svg" alt="">
         </div>
 
@@ -46,7 +46,7 @@
     </div>
     <div x-show="!login" class="bg-[#2C4156] grid grid-cols-2 h-full w-full">
         <!-- Left div -->
-        <div class="grid font-mono grid-rows-3 ">
+        <div class="grid h-full font-mono grid-rows-3 ">
             <div class="">
             </div>
             <form action="login" class="place-items-center grid font-bol w-full px-[2rem]">

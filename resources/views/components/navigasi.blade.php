@@ -12,6 +12,6 @@
             <input class="outline-none h-10 pl-4 pr-12 rounded border text-sm border-greys bg-transparent transition duration-150 ease-in-out text-placenav cursor-pointer" type="text" placeholder="Cari produk pilihanmu">
             <img class="absolute w-[2rem] right-3 top-1/2 transform -translate-y-1/2" src="img/Search.svg" alt="Search">
         </form>
-        <button class="font-inter tracking-wide px-4 py-2 ml-4 rounded-lg bg-secondary text-white text-base hover:bg-seconhvr">Masuk</button>
+        <a href='/login' class="font-inter tracking-wide px-4 py-2 ml-4 rounded-lg bg-secondary text-white text-base hover:bg-seconhvr">Masuk</a>
     </div>
 </nav>
