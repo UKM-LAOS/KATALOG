@@ -42,7 +42,7 @@
                                         <button class="status-button bg-[#08781A] text-white py-1 px-3 text-xs font-semibold rounded-2xl">Display</button>
                                     </td>
                                     <td class="py-2 px-4 border-b border-gray-300">
-                                        <button class="bg-red-500 text-white py-1 px-2 text-xs font-semibold rounded-2xl">Hapus</button>
+                                        <button class="bg-red-500 text-white py-1 px-2 text-xs font-semibold rounded-2xl" onclick="openModal('deleteModal')">Hapus</button>
                                     </td>
                                 </tr>
                                 <tr class="hover:bg-gray-100">
@@ -56,7 +56,7 @@
                                         <button class="status-button bg-[#FFB83D] text-white py-1 px-3 text-xs font-semibold rounded-2xl">Undisplay</button>
                                     </td>
                                     <td class="py-2 px-4 border-b border-gray-300">
-                                        <button class="bg-red-500 text-white py-1 px-2 text-xs font-semibold rounded-2xl">Hapus</button>
+                                        <button class="bg-red-500 text-white py-1 px-2 text-xs font-semibold rounded-2xl" onclick="openModal('deleteModal')">Hapus</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -109,6 +109,21 @@
         </div>
     </div>
 
+    <!-- Modal Hapus -->
+    <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative">
+            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="text-lg font-semibold mb-4">Konfirmasi Hapus</h2>
+            <p class="text-gray-600 mb-4">Apakah Anda yakin ingin menghapus produk ini? Produk yang telah dihapus tidak dapat dipulihkan.</p>
+            <div class="flex justify-end gap-4">
+                <button class="bg-red-500 text-white py-2 px-4 rounded-lg" onclick="confirmDelete()">Hapus</button>
+                <button class="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg" onclick="closeModal()">Batal</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
@@ -118,6 +133,11 @@
             document.querySelectorAll('.fixed').forEach(modal => {
                 modal.classList.add('hidden');
             });
+        }
+
+        function confirmDelete() {
+            alert('Item telah dihapus!');
+            closeModal();
         }
 
         document.addEventListener('DOMContentLoaded', function() {
