@@ -33,3 +33,7 @@ Route::get('/admin', function(){
 Route::get('/produkadmin', function(){
     return view('adminProduct');
 });
+
+Route::get('/tokoadmin', function(){
+    return view('adminToko');
+});
