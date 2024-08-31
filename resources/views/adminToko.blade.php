@@ -143,23 +143,6 @@
         function closeResetPasswordModal() {
             document.getElementById('resetPasswordModal').classList.add('hidden');
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.status-button');
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
-                    if (button.textContent === 'Display') {
-                        button.textContent = 'Undisplay';
-                        button.classList.remove('bg-[#08781A]');
-                        button.classList.add('bg-[#FFB83D]');
-                    } else {
-                        button.textContent = 'Display';
-                        button.classList.remove('bg-[#FFB83D]');
-                        button.classList.add('bg-[#08781A]');
-                    }
-                });
-            });
-        });
     </script>
 </body>
 </html>
