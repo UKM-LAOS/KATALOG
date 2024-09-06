@@ -1,8 +1,35 @@
+@php
+    $products = [
+        [
+            'name' => 'Laptop Gaming Pro++',
+            'category' => 'Laptop',
+            'price' => 'Rp. 10.000.000',
+            'store' => 'Kasus ROG',
+            'date' => '01/09/2024',
+            'overview' => 'Laptop gaming dengan spesifikasi tinggi untuk performa maksimal.',
+            'detail' => 'Dilengkapi dengan prosesor terbaru dan kartu grafis canggih.',
+            'status' => 'Display',
+            'image' => 'https://via.placeholder.com/150',
+        ],
+        [
+            'name' => 'Kamera Ketche',
+            'category' => 'Kamera',
+            'price' => 'Rp. 5.000.000',
+            'store' => 'Nikoni',
+            'date' => '01/09/2024',
+            'overview' => 'Kamera ketche dengan spesifikasi tinggi untuk performa maksimal.',
+            'detail' => 'Dilengkapi dengan prosesor terbaru dan kartu grafis canggih.',
+            'status' => 'Display',
+            'image' => 'https://via.placeholder.com/150',
+        ],
+    ];
+@endphp
 @extends('layouts.admin.app')
 
 @section('title', 'Produk admin')
 
 @section('content')
+
     <div class="flex-1 lg:px-4">
         <div class="bg-white p-4 rounded-md">
             <h2 class="text-gray-500 text-lg font-semibold pb-4">Data Produk</h2>
@@ -33,102 +60,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hover:bg-gray-100">
-                            <td class="py-2 px-4 border-b border-gray-300">Laptop Gaming Pro++</td>
-                            <td class="py-2 px-4 border-b border-gray-300">Kasus ROG</td>
-                            <td class="py-2 px-4 border-b border-gray-300">Rp. 10.000.000</td>
-                            <td class="py-2 px-4 border-b border-gray-300">
-                                <button class="bg-[#4D86BC] text-white py-1 px-3 text-xs font-semibold rounded-2xl"
-                                    onclick="openModal('modal1')">Detail</button>
-                            </td>
-                            <td class="py-2 px-4 border-b border-gray-300">
-                                <button
-                                    class="status-button bg-[#08781A] text-white py-1 px-3 text-xs font-semibold rounded-2xl">Display</button>
-                            </td>
-                            <td class="py-2 px-4 border-b border-gray-300">
-                                <button class="bg-red-500 text-white py-1 px-2 text-xs font-semibold rounded-2xl"
-                                    onclick="openModal('deleteModal')">Hapus</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-100">
-                            <td class="py-2 px-4 border-b border-gray-300">Kamera Ketche</td>
-                            <td class="py-2 px-4 border-b border-gray-300">Nikoni</td>
-                            <td class="py-2 px-4 border-b border-gray-300">Rp. 5.000.000</td>
-                            <td class="py-2 px-4 border-b border-gray-300">
-                                <button class="bg-[#4D86BC] text-white py-1 px-3 text-xs font-semibold rounded-2xl"
-                                    onclick="openModal('modal2')">Detail</button>
-                            </td>
-                            <td class="py-2 px-4 border-b border-gray-300">
-                                <button
-                                    class="status-button bg-[#FFB83D] text-white py-1 px-3 text-xs font-semibold rounded-2xl">Undisplay</button>
-                            </td>
-                            <td class="py-2 px-4 border-b border-gray-300">
-                                <button class="bg-red-500 text-white py-1 px-2 text-xs font-semibold rounded-2xl"
-                                    onclick="openModal('deleteModal')">Hapus</button>
-                            </td>
-                        </tr>
+                        @foreach ($products as $index => $product)
+                            <tr class="hover:bg-gray-100">
+                                <td class="py-2 px-4 border-b border-gray-300">{{ $product['name'] }}</td>
+                                <td class="py-2 px-4 border-b border-gray-300">{{ $product['store'] }}</td>
+                                <td class="py-2 px-4 border-b border-gray-300">{{ $product['price'] }}</td>
+                                <td class="py-2 px-4 border-b border-gray-300">
+                                    <button class="bg-[#4D86BC] text-white py-1 px-3 text-xs font-semibold rounded-2xl"
+                                        onclick="openModal('modal{{ $index }}')">Detail</button>
+                                </td>
+                                <td class="py-2 px-4 border-b border-gray-300">
+                                    <button
+                                        class="status-button bg-[#08781A] text-white py-1 px-3 text-xs font-semibold rounded-2xl">Display</button>
+                                </td>
+                                <td class="py-2 px-4 border-b border-gray-300">
+                                    <button class="bg-red-500 text-white py-1 px-2 text-xs font-semibold rounded-2xl"
+                                        onclick="openModal('deleteModal')">Hapus</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal Component -->
+                            <x-productModal :product="$product" modalId="modal{{ $index }}" />
+                        @endforeach <!-- Modal Hapus -->
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="modal1" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-        <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative max-h-[90vh] overflow-y-auto">
-            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="flex flex-col items-center">
-                <img src="https://via.placeholder.com/150" alt="Product Image" class="w-32 h-32 object-cover mb-4">
-                <h2 class="text-xl font-semibold mb-2">Laptop Gaming Pro++</h2>
-                <p class="text-gray-600 mb-2"><strong>Kategori:</strong> Laptop</p>
-                <p class="text-gray-600 mb-2"><strong>Harga:</strong> Rp. 10.000.000</p>
-                <p class="text-gray-600 mb-2"><strong>Toko:</strong> Kasus ROG</p>
-                <p class="text-gray-600 mb-2"><strong>Tanggal Posting:</strong> 01/09/2024</p>
-                <p class="text-gray-600 mb-4"><strong>Overview:</strong> Laptop gaming dengan spesifikasi tinggi untuk
-                    performa maksimal. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque soluta
-                    asperiores, dolorum deserunt beatae voluptatum in fugiat cupiditate praesentium vitae eius, ab ea,
-                    optio animi dicta vel consequatur? Atque, praesentium?</p>
-                <p class="text-gray-600 mb-4"><strong>Detail:</strong> Dilengkapi dengan prosesor terbaru dan kartu
-                    grafis canggih. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur eos nemo
-                    debitis nihil, nobis odit quisquam vero voluptatum, fuga expedita animi! Modi laboriosam at ratione
-                    quis mollitia inventore laborum? Aliquid?</p>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mb-4">Lihat Produk</button>
-                <p class="text-gray-600"><strong>Status Display:</strong> Display</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2 -->
-    <div id="modal2" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-        <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative max-h-[90vh] overflow-y-auto">
-            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="flex flex-col items-center">
-                <img src="https://via.placeholder.com/150" alt="Product Image" class="w-32 h-32 object-cover mb-4">
-                <h2 class="text-xl font-semibold mb-2">Kamera Ketche</h2>
-                <p class="text-gray-600 mb-2"><strong>Kategori:</strong> Kamera</p>
-                <p class="text-gray-600 mb-2"><strong>Harga:</strong> Rp. 5.000.000</p>
-                <p class="text-gray-600 mb-2"><strong>Toko:</strong> Nikoni</p>
-                <p class="text-gray-600 mb-2"><strong>Tanggal Posting:</strong> 01/09/2024</p>
-                <p class="text-gray-600 mb-4"><strong>Overview:</strong> Kamera ketche dengan spesifikasi tinggi untuk
-                    performa maksimal.</p>
-                <p class="text-gray-600 mb-4"><strong>Detail:</strong> Dilengkapi dengan prosesor terbaru dan kartu
-                    grafis canggih. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati perspiciatis
-                    beatae nobis rem quidem? Non nemo sed iusto facere nobis dolore consequatur, eius voluptate quae
-                    quasi odio molestias, numquam blanditiis.</p>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mb-4">Lihat Produk</button>
-                <p class="text-gray-600"><strong>Status Display:</strong> Display</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Hapus -->
     <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative">
-            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal()">
+            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal('deleteModal')">
                 <i class="fas fa-times"></i>
             </button>
             <h2 class="text-lg font-semibold mb-4">Konfirmasi Hapus</h2>
@@ -136,7 +99,7 @@
                 dapat dipulihkan.</p>
             <div class="flex justify-end gap-4">
                 <button class="bg-red-500 text-white py-2 px-4 rounded-lg" onclick="confirmDelete()">Hapus</button>
-                <button class="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg" onclick="closeModal()">Batal</button>
+                <button class="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg" onclick="closeModal('deleteModal')">Batal</button>
             </div>
 
         </div>
@@ -146,8 +109,8 @@
             document.getElementById(modalId).classList.remove('hidden');
         }
 
-        function closeModal() {
-            document.querySelectorAll('.fixed').forEach(modal => {
+        function closeModal(id) {
+            document.querySelectorAll('#' + id).forEach(modal => {
                 modal.classList.add('hidden');
             });
         }
