@@ -28,5 +28,12 @@ Route::get('/login', function () {
 
 Route::get('/admin', function(){
     return view('admin');
+});
 
+Route::get('/produkadmin', function(){
+    return view('adminProduct');
+});
+
+Route::get('/tokoadmin', function(){
+    return view('adminToko');
 });

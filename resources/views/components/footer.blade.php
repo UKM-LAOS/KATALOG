@@ -1,4 +1,4 @@
-<footer class="container mx-auto px-full py-[10vh] bg-secondary">
+<footer class="w-full py-[10vh] bg-secondary">
     <div class="flex flex-col justify-center items-center">
         <h1 class="text-[2.4vw] font-medium mt-[2vh] text-white text-all text-center">Hubungi kami</h1>
         <div class="flex items-center">
