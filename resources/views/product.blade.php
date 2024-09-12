@@ -11,10 +11,9 @@
 
 <body class="bg-white">
 
-    <div class="container mx-auto py-8 mt-20">
-        <div class="grid grid-cols-4 gap-6">
-            <!-- Filter Sidebar -->
-            <div class="col-span-1 p-4 bg-white shadow rounded-lg">
+    <div class="container mx-auto py-8">
+        <div class="flex">
+            <div class="w-2/6 p-4 bg-white shadow rounded-lg">
                 <h2 class="ml-6 mr-6 text-xl font-semibold mb-4">Filter</h2>
                 <div class="mb-4">
                     <details open>
@@ -39,7 +38,7 @@
             </div>
 
             <!-- Produk List -->
-            <div class="col-span-3 grid grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+            <div class="w-3/4 flex flex-wrap gap-6 p-4">
                 <!-- Produk -->
                 <x-cardProduct></x-cardProduct>
                 <x-cardProduct></x-cardProduct>
