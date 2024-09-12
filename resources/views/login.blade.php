@@ -21,7 +21,7 @@
     <div x-show="login" class="bg-[#2C4156] grid grid-cols-2 h-full w-full">
         <!-- Left div -->
         <div class="grid h-full place-items-center">
-            <img src="img/LoginLeft.svg" alt="">
+            <img src="img/LoginLeft.svg" style="height: 50rem; margin:-3rem;" alt="">
         </div>
 
         <!-- Right div -->
@@ -49,9 +49,9 @@
 
     <div x-show="!login" class="bg-[#2C4156] grid grid-cols-2 h-full w-full">
         <!-- Left div -->
-        <div class="grid h-full font-mono grid-rows-3">
+        <div class="grid h-full font-mono">
             <div></div>
-            <form action="login" class="place-items-center grid font-bold w-full px-[2rem]">
+            <form action="login" class="place-items-center grid font-bold w-full px-[4rem]">
                 <h1 class="text-white font-bold text-4xl">MASUK</h1>
                 <div class="w-full">
                     <p class="text-white">Email</p>
@@ -67,7 +67,7 @@
 
         <!-- Right div -->
         <div class="bg-[#F2F2F2] grid place-items-center h-full w-full">
-            <img class="p-[2rem]" src="/img/LoginRight.svg" alt="">
+            <img src="/img/LoginRight.svg" style="margin:2rem;" alt="">
         </div>
     </div>
 </body>
