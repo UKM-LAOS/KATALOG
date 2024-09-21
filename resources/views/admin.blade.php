@@ -25,7 +25,9 @@
         </div>
     </div>
     @push('js')
-        <script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        window.onload = function() {
             var ctx1 = document.getElementById('produkChart').getContext('2d');
             var produkChart = new Chart(ctx1, {
                 type: 'bar',
@@ -89,7 +91,7 @@
                     }
                 }
             });
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        };
+    </script>
     @endpush
 @endsection
