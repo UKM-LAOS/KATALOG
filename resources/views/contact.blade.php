@@ -12,7 +12,7 @@
 <body class="bg-white flex items-center justify-center h-screen">
 
     <!-- Container -->
-    <div class="relative bg-blue-500 w-full max-w-lg rounded-lg shadow-lg p-8">
+    <div class="relative bg-cyan-900 w-full max-w-4xl rounded-lg shadow-lg p-8"> 
         
         <!-- Contact Us -->
         <div class="absolute top-0 left-0 mt-4 ml-4 text-white text-lg font-semibold">
@@ -20,15 +20,15 @@
         </div>
 
         <!-- Email -->
-        <div class="absolute bottom-12 left-0 mt-8 ml-7">
-            <a href="mailto:someone@example.com" class="inline-block bg-white text-blue-500 font-semibold py-2 px-4 rounded-lg shadow-md">
+        <div class="absolute bottom-12 left-20 ml-7">
+            <a href="mailto:someone@example.com" class="inline-block bg-white text-blue-500 font-semibold py-2.5 px-4 rounded-lg shadow-md">
             <i class="fas fa-envelope mr-2"></i> Email
             </a>
         </div>
 
         <!-- WhatsApp -->
-        <div class="absolute bottom-12 right-0 mt-8 mr-7">
-            <a href="https://wa.me/1234567890" class="inline-block bg-white text-green-500 font-semibold py-2 px-4 rounded-lg shadow-md">
+        <div class="absolute bottom-12 right-20 mr-7">
+            <a href="https://wa.me/1234567890" class="inline-block bg-white text-green-500 font-semibold py-2.5 px-4 rounded-lg shadow-md">
             <i class="fab fa-whatsapp mr-2"></i> WhatsApp
             </a>
         </div>
