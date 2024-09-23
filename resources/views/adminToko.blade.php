@@ -47,10 +47,10 @@
             </div>
         </div>
     </div>
-    <!-- Modal for adding a new store -->
+
     <div id="addStoreModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative max-h-[90vh] overflow-y-auto">
-            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal()">
+            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal('addStoreModal')">
                 <i class="fas fa-times"></i>
             </button>
             <h2 class="text-xl font-semibold mb-4">Tambah Toko</h2>
@@ -90,10 +90,9 @@
         </div>
     </div>
 
-    <!-- Modal for store details -->
     <div id="modal1" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative max-h-[90vh] overflow-y-auto">
-            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal()">
+            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal('modal1')">
                 <i class="fas fa-times"></i>
             </button>
             <div class="flex flex-col items-center">
@@ -112,10 +111,9 @@
         </div>
     </div>
 
-    <!-- Modal for resetting password -->
     <div id="resetPasswordModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative max-h-[90vh] overflow-y-auto">
-            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeResetPasswordModal()">
+            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeResetPasswordModal('resetPasswordModal')">
                 <i class="fas fa-times"></i>
             </button>
             <h2 class="text-xl font-semibold mb-4">Reset Password</h2>
@@ -141,8 +139,8 @@
         document.getElementById(modalId).classList.remove('hidden');
     }
 
-    function closeModal() {
-        document.querySelectorAll('.fixed').forEach(modal => {
+    function closeModal(id) {
+        document.querySelectorAll('#' + id).forEach(modal => {
             modal.classList.add('hidden');
         });
     }
