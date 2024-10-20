@@ -48,6 +48,7 @@
         </div>
     </div>
     
+    
     <!-- Modal for adding a new store -->
     <div id="addStoreModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative max-h-[90vh] overflow-y-auto">
