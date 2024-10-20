@@ -37,3 +37,7 @@ Route::get('/produkadmin', function(){
 Route::get('/tokoadmin', function(){
     return view('adminToko');
 });
+
+Route::get('/profiladmin', function(){
+    return view('adminProfil');
+});
