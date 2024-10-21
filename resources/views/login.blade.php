@@ -50,18 +50,31 @@
     <div x-show="!login" class="bg-[#2C4156] grid grid-cols-2 h-full w-full">
         <!-- Left div -->
         <div class="grid h-full font-mono">
-            <div></div>
-            <form action="login" class="place-items-center grid font-bold w-full px-[4rem]">
+            <form action="login" class="place-items-center grid font-bold w-full px-[4rem]" method="POST">
+                @csrf
                 <h1 class="text-white font-bold text-4xl">MASUK</h1>
+                
                 <div class="w-full">
                     <p class="text-white">Email</p>
-                    <input type="text" name="" id="" class="p-2 border w-full rounded mb-5" placeholder="Username">
+                    <input type="text" value="{{old("email")}}"name="email" id="" class="p-2 border w-full rounded mb-5" placeholder="Username">
                     <p class="text-white">Kata Sandi</p>
                     <input type="password" name="password" id="" class="p-2 border w-full rounded mb-[2rem]" placeholder="Password">
 
                     <input type="submit" value="MASUK" class="p-2 font-bold w-full bg-[#FAA832] text-white rounded-lg cursor-pointer">
                 </div>
             </form>
+
+            @if($errors->any())
+            <div class="p-2 rounded mb-3">
+                <ul class="text-red-500">
+                    @foreach($errors->all() as $item)
+                        <li>{{ $item }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
+            
             <div class="h-full bg-[#2C4156]"></div>
         </div>
 
