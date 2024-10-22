@@ -53,8 +53,12 @@
             <form action="login" class="place-items-center grid font-bold w-full px-[4rem]" method="POST">
                 @csrf
                 <h1 class="text-white font-bold text-4xl">MASUK</h1>
+<<<<<<< HEAD
                 
                 <div class="w-full">
+=======
+                <div class="w-[75%]">
+>>>>>>> develop
                     <p class="text-white">Email</p>
                     <input type="text" value="{{old("email")}}"name="email" id="" class="p-2 border w-full rounded mb-5" placeholder="Username">
                     <p class="text-white">Kata Sandi</p>
@@ -80,7 +84,7 @@
 
         <!-- Right div -->
         <div class="bg-[#F2F2F2] grid place-items-center h-full w-full">
-            <img src="/img/LoginRight.svg" style="margin:2rem;" alt="">
+            <img src="/img/LoginRight.svg" style="width: 400px; margin:2rem;" alt="">
         </div>
     </div>
 </body>

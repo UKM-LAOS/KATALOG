@@ -1,7 +1,8 @@
-<nav class="w-full h-16 bg-primary flex items-center fixed top-0 left-0 z-50 shadow-sm px-6">
-    <img src="img/Katalog.svg" alt="Katalog" class="w-24 mr-auto">
+<nav class="w-full h-[12vh] bg-primary flex items-center fixed top-0 left-0 z-50 shadow-sm px-9">
+    <img src="img/Katalog.svg" alt="Katalog" class="w-[12vw] mr-auto">
     
-    <ul class="list-none flex gap-6 mr-8">
+    <ul class="list-none flex gap-[5vw] mr-[9vw]">
+        {{-- Blade Directive --}}
         <li><a href="/homepage" class="{{ request()->is('homepage') ? 'font-bold font-sans text-base' : 'font-medium font-sans text-base'}} text-secondary no-underline text-base">Beranda</a></li>
         <li><a href="/product" class="{{ request()->is('product') ? 'font-bold font-sans text-base' : 'font-medium font-sans text-base'}} text-secondary no-underline text-base">Produk</a></li>
         <li><a href="/contact" class="{{ request()->is('contact') ? 'font-bold font-sans text-base' : 'font-medium font-sans text-base'}} text-secondary no-underline text-base">Kontak</a></li>
