@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('fotoproduk');
             $table->date('tglposting');
             $table->enum('statusdisplay', [1,2]);
+            $table->integer('totalklik')->default(0);
             $table->foreignId('idkategori')->constrained('kategoris')->onDelete('cascade');
             $table->foreignId('idtoko')->constrained('tokos')->onDelete('cascade');
             $table->timestamps();
