@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function homepage()
     {
-        return view('homepage');
+        $Terpopuler = Produk::with('kategori')
+        ->where('statusdisplay', 1)
+        ->orderByDesc('totalklik')
+        ->limit(3)
+        ->get();
+        return view('homepage', compact('Terpopuler'));
     }
 
     public function product()

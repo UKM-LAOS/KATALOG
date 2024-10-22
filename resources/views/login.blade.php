@@ -10,7 +10,8 @@
     <!-- Include Alpine.js -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
             overflow: hidden;
         }
@@ -41,7 +42,8 @@
 
                 <!-- Text in the third row, aligned to the bottom -->
                 <div class="grid place-items-start justify-center">
-                    <button @click="login = !login" class="bg-[#FAA832] text-xl text-white font-bold rounded-2xl px-[4rem] py-[0.75rem]">Letsgooo</button>
+                    <button @click="login = !login"
+                        class="bg-[#FAA832] text-xl text-white font-bold rounded-2xl px-[4rem] py-[0.75rem]">Letsgooo</button>
                 </div>
             </div>
         </div>
@@ -53,32 +55,30 @@
             <form action="login" class="place-items-center grid font-bold w-full px-[4rem]" method="POST">
                 @csrf
                 <h1 class="text-white font-bold text-4xl">MASUK</h1>
-<<<<<<< HEAD
-                
-                <div class="w-full">
-=======
                 <div class="w-[75%]">
->>>>>>> develop
                     <p class="text-white">Email</p>
-                    <input type="text" value="{{old("email")}}"name="email" id="" class="p-2 border w-full rounded mb-5" placeholder="Username">
+                    <input type="text" value="{{ old('email') }}"name="email" id=""
+                        class="p-2 border w-full rounded mb-5" placeholder="Username">
                     <p class="text-white">Kata Sandi</p>
-                    <input type="password" name="password" id="" class="p-2 border w-full rounded mb-[2rem]" placeholder="Password">
+                    <input type="password" name="password" id="" class="p-2 border w-full rounded mb-[2rem]"
+                        placeholder="Password">
 
-                    <input type="submit" value="MASUK" class="p-2 font-bold w-full bg-[#FAA832] text-white rounded-lg cursor-pointer">
+                    <input type="submit" value="MASUK"
+                        class="p-2 font-bold w-full bg-[#FAA832] text-white rounded-lg cursor-pointer">
                 </div>
             </form>
 
-            @if($errors->any())
-            <div class="p-2 rounded mb-3">
-                <ul class="text-red-500">
-                    @foreach($errors->all() as $item)
-                        <li>{{ $item }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        
-            
+            @if ($errors->any())
+                <div class="p-2 rounded mb-3">
+                    <ul class="text-red-500">
+                        @foreach ($errors->all() as $item)
+                            <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+
             <div class="h-full bg-[#2C4156]"></div>
         </div>
 

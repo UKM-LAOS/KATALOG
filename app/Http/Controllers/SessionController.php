@@ -28,7 +28,14 @@ class SessionController extends Controller
         ];
 
         if (Auth::attempt($infologin)) {
-            return redirect('admin');
+            $user = Auth::user();
+            if ($user->role == 'admin') {
+                return redirect('/admin');
+            } elseif ($user->role == 'toko') {
+                return redirect('/homepage');
+            } else {
+                return redirect('/login')->withErrors('pesan', 'Role tidak dikenali');
+            }
         } else {
             return redirect('login')->withErrors('pesan', 'Email atau Password salah')->withInput();
         }
@@ -36,6 +43,6 @@ class SessionController extends Controller
     function logout()
     {
         Auth::logout();
-        return redirect('homepage');
+        return redirect('/');
     }
 }

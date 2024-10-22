@@ -13,6 +13,15 @@
             <input class="outline-none h-10 pl-4 pr-12 rounded border text-sm border-greys bg-transparent transition duration-150 ease-in-out text-placenav" type="text" placeholder="Cari produk pilihanmu">
             <img class="absolute w-[2rem] right-2 top-1/2 transform -translate-y-1/2 cursor-pointer" src="img/Search.svg" alt="Search">
         </form>
-        <a href='/login' class="font-inter tracking-wide px-4 py-2 ml-4 rounded-lg bg-secondary text-white text-base hover:bg-seconhvr">Masuk</a>
+        @guest
+            <a href='/login' class="font-inter tracking-wide px-4 py-2 ml-4 rounded-lg bg-secondary text-white text-base hover:bg-seconhvr">Masuk</a>
+        @endguest
+        
+        @auth
+            <form method="GET" action="/logout">
+                @csrf
+                <button type="submit" class="font-inter tracking-wide px-4 py-2 ml-4 rounded-lg bg-secondary text-white text-base hover:bg-seconhvr">Logout</button>
+            </form>
+        @endauth
     </div>
 </nav>
