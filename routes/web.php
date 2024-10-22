@@ -22,16 +22,16 @@ Route::middleware("auth")->group(function () {
     Route::get('/homepage', [PageController::class, 'homepage']);
     Route::get('/product', [PageController::class, 'product']);
     Route::get('/contact', [PageController::class, 'contact']);
-    Route::get('/detail-product', [PageController::class, 'detailProduct']);
+    Route::get('/detail-product/{id}', [PageController::class, 'detailProduct'])->name('detail-product');
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/produkadmin', [AdminController::class, 'adminProduct']);
     Route::get('/tokoadmin', [AdminController::class, 'adminToko']);
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
 });
 
-Route::get('/detail-product', function () {
-    return view('detailProduct');
-});
+// Route::get('/detail-product', function () {
+//     return view('detailProduct');
+// });
 
 // Route::get('/login', function () {
 //     return view('login');

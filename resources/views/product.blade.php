@@ -37,18 +37,10 @@
                 </div>
             </div>
 
-            <!-- Produk List -->
             <div class="w-3/4 flex flex-wrap gap-6 p-4">
-                <!-- Produk -->
-                <x-cardProduct></x-cardProduct>
-                <x-cardProduct></x-cardProduct>
-                <x-cardProduct></x-cardProduct>
-                <x-cardProduct></x-cardProduct>
-                <x-cardProduct></x-cardProduct>
-                <x-cardProduct></x-cardProduct>
-                <x-cardProduct></x-cardProduct>
-                <x-cardProduct></x-cardProduct>
-                <!-- Produk -->
+                @foreach ($produks as $produk)
+                    <x-cardProduct :produk="$produk"/>
+                @endforeach
             </div>
         </div>
     </div>

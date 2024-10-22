@@ -19,7 +19,8 @@ class PageController extends Controller
 
     public function product()
     {
-        return view('product');
+        $produks = Produk::with('kategori')->get();
+        return view('product', compact('produks'));
     }
 
     public function contact()
@@ -27,8 +28,9 @@ class PageController extends Controller
         return view('contact');
     }
 
-    public function detailProduct()
+    public function detailProduct($id)
     {
-        return view('detailProduct');
+        $produk = Produk::with('kategori')->findOrFail($id);
+        return view('detailProduct', compact('produk'));
     }
 }

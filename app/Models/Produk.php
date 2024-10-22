@@ -29,7 +29,9 @@ class Produk extends Model
         return $this->belongsTo(Kategori::class, 'idkategori');
     }
 
-    public function tokos(){
+
+    public function tokos()
+    {
         return $this->hasMany(Toko::class);
     }
 }
