@@ -1,14 +1,13 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 }); 
 
-Route::get('/homepage', function () {
-    return view('homepage');
-});
+Route::get('/homepage', [Controllers\Pengguna\HomePageController::class, 'index'])->name('HomePage');
 
 Route::get('/product', function () {
     return view('product');

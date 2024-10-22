@@ -10,7 +10,7 @@
 <body>
     <x-navigasi></x-navigasi>
     <x-main></x-main>
-    <x-producthome></x-producthome>
+    <x-producthome  :Terpopuler="$Terpopuler"></x-producthome>
     <x-intro></x-intro>
     <x-footer></x-footer>
 </body>
