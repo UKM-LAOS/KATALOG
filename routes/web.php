@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers;
+use App\Http\Controllers\Admin\ProfilAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
 
 route::middleware('guest')->group(function () {
@@ -26,6 +28,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/produkadmin', [AdminController::class, 'adminProduct']);
     Route::get('/tokoadmin', [AdminController::class, 'adminToko']);
+    Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
 });
 
@@ -49,6 +52,6 @@ Route::get('/detail-product', function () {
 //     return view('adminToko');
 // });
 
-Route::get('/profiladmin', function () {
-    return view('adminProfil');
-});
+// Route::get('/profiladmin', function () {
+//     return view('adminProfil');
+// });

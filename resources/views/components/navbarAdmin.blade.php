@@ -42,7 +42,7 @@
             </span>
         </a>
         <a class=" text-white py-2.5 px-4 my-4 rounded transition duration-200 flex items-center space-x-2"
-            href="{{ url('/profiladmin') }}">
+            href="{{ route('profiladmin.index') }}">
             <img src="img/admprofil.svg" alt="ProfilAdmin" class="h-6 mr-2">
             <span class="relative group pb-1">Profil Admin
                 <span
