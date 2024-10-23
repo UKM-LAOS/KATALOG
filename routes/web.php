@@ -23,6 +23,8 @@ route::middleware('guest')->group(function () {
 Route::middleware("auth")->group(function () {
     Route::get('/homepage', [PageController::class, 'homepage']);
     Route::get('/product', [PageController::class, 'product']);
+    Route::get('/searchProduct', [PageController::class, 'searchProduct']);
+    Route::get('/filterProducts', [PageController::class, 'filterProduct'])->name('filter.products');
     Route::get('/contact', [PageController::class, 'contact']);
     Route::get('/detail-product/{id}', [PageController::class, 'detailProduct'])->name('detail-product');
     Route::get('/admin', [AdminController::class, 'index']);

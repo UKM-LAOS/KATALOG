@@ -8,8 +8,8 @@
     </ul>
     
     <div class="flex items-center">
-        <form class="relative flex items-center">
-            <input class="outline-none h-10 pl-4 pr-12 rounded border text-sm border-greys bg-transparent transition duration-150 ease-in-out text-placenav" type="text" placeholder="Cari produk pilihanmu">
+        <form class="relative flex items-center" action="/searchProduct" method="GET">
+            <input name="inputan" class="outline-none h-10 pl-4 pr-12 rounded border text-sm border-greys bg-transparent transition duration-150 ease-in-out text-placenav" type="text" placeholder="Cari produk pilihanmu">
             <img class="absolute w-[2rem] right-2 top-1/2 transform -translate-y-1/2 cursor-pointer" src="/img/Search.svg" alt="Search">
         </form>
         @guest
