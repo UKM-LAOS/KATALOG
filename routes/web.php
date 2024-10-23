@@ -13,6 +13,7 @@ route::middleware('guest')->group(function () {
     Route::get('/homeguest', [PageController::class, 'homepage']);
     Route::get('/productguest', [PageController::class, 'product']);
     Route::get('/contactguest', [PageController::class, 'contact']);
+    Route::get('/detail-product-guest/{id}', [PageController::class, 'detailProduct'])->name('detail-product');
     Route::get('/login', [SessionController::class, 'index'])->name('login');
     Route::post('/login', [SessionController::class, 'login']);
 });

@@ -6,5 +6,12 @@
     </span>
     <h3 class="text-lg font-semibold mb-2">{{ $produk->namaproduk }}</h3>
     <p class="text-gray-600 mb-4">RP.{{ number_format($produk->hargaproduk, 0, ',', '.') }}</p>
-    <a href="/detail-product/{{ $produk->id }}" class="block text-center bg-slate-500 text-white py-2 rounded-lg">Detail</a>
+    @guest
+        <a href="/detail-product-guest/{{ $produk->id }}"
+            class="block text-center bg-slate-500 text-white py-2 rounded-lg">Detail</a>
+    @endguest
+    @auth
+        <a href="/detail-product/{{ $produk->id }}"
+            class="block text-center bg-slate-500 text-white py-2 rounded-lg">Detail</a>
+    @endauth
 </div>
