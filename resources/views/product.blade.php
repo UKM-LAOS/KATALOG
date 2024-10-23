@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="w-3/4 flex flex-wrap gap-6 p-4">
+            <div class="w-full flex flex-wrap gap-6 p-4">
                 @foreach ($produks as $produk)
                 <x-cardProduct :produk="$produk" />
                 @endforeach
