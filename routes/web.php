@@ -64,6 +64,14 @@ Route::middleware("auth")->group(function () {
 //     return view('adminProfil');
 // });
 
+Route::get('/dashboardtoko', function () {
+    return view('dashboardToko');
+});
+
 Route::get('/tambahproduk', function () {
     return view('tambahProduct');
+});
+
+Route::get('/profiltoko', function () {
+    return view('profilToko');
 });

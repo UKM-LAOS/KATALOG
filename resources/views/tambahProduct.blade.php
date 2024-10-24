@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.toko.app')
 
 @section('title', 'Tambah Produk')
 
@@ -41,8 +41,14 @@
                 <div class="flex items-center justify-center">
                     <div class="border-2 border-dashed border-gray-300 w-40 h-40 flex flex-col items-center justify-center rounded-md">
                         <div class="text-gray-400 text-center">
-                            <i class="fas fa-plus text-4xl"></i>
-                            <p class="mt-2">Upload Image</p>
+                            <!-- Input file yang disembunyikan -->
+                            <input type="file" id="fileInput" style="display: none;" onchange="showFileName()" />
+                            
+                            <!-- Elemen untuk menampilkan ikon atau nama file -->
+                            <a href="javascript:void(0);" id="uploadIcon" onclick="document.getElementById('fileInput').click();">
+                                <i class="fas fa-plus text-4xl"></i>
+                            </a>
+                            <p class="mt-2" id="uploadText">Upload Image</p>
                         </div>
                     </div>
                 </div>
@@ -78,7 +84,7 @@
         <h2 class="text-xl font-semibold mb-4">Berhasil Menambahkan Produk</h2>
         <p class="mb-4">Produk berhasil ditambahkan. Cek di dashboard.</p>
         <div class="flex justify-end">
-            <a href="/dashboard" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Cek Dashboard</a>
+            <a href="/dashboardtoko" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Cek Dashboard</a>
         </div>
     </div>
 </div>
@@ -117,5 +123,18 @@
     function showSuccessAlert() {
         // Simulasikan proses simpan (bisa tambahkan logika penyimpanan sebenarnya)
         document.getElementById('successAlert').classList.remove('hidden');
+    }
+
+    function showFileName() {
+        const fileInput = document.getElementById('fileInput');
+        const uploadIcon = document.getElementById('uploadIcon');
+        const uploadText = document.getElementById('uploadText');
+
+        // Jika ada file yang dipilih, ubah ikon menjadi nama file
+        if (fileInput.files.length > 0) {
+            const fileName = fileInput.files[0].name;
+            uploadIcon.innerHTML = fileName; // Mengganti ikon dengan nama file
+            uploadText.style.display = 'none'; // Sembunyikan teks "Upload Image"
+        }
     }
 </script>
