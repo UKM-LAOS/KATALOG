@@ -1,6 +1,6 @@
 @props(['produk'])
 <div class="bg-white shadow rounded-lg p-4">
-    <img src="{{ $produk->fotoproduk }}" alt="{{ $produk->namaproduk }}" class="w-full h-32 object-cover mb-4">
+    <img src="{{ $produk->fotoproduk }}" alt="{{ $produk->namaproduk }}" class="w-32 h-32 object-cover mb-4">
     <span class=" bg-slate-600 text-white text-xs font-semibold px-2 py-1 rounded-full inline-block ml-2 mb-2">
         {{ $produk->kategori->kategori ?? 'Kategori tidak tersedia' }}
     </span>

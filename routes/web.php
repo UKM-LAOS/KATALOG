@@ -52,3 +52,7 @@ Route::middleware("auth")->group(function () {
 Route::get('/profiladmin', function () {
     return view('adminProfil');
 });
+
+Route::get('/tambahproduk', function () {
+    return view('tambahProduct');
+});

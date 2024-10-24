@@ -105,8 +105,7 @@
                     elektronik.</p>
                 <p class="text-gray-600 mb-4"><strong>Email Toko:</strong> email@toko.com</p>
                 <div class="flex gap-4">
-                    <a href="https://example.com" class="bg-blue-500 text-white py-2 px-4 rounded-lg inline-block"
-                        target="_blank">Kunjungi Toko</a>
+                    <a href="tambahproduk" class="bg-blue-500 text-white py-2 px-4 rounded-lg inline-block">Kunjungi Toko</a>
                     <button class="bg-red-500 text-white py-2 px-4 rounded-lg" onclick="openResetPasswordModal()">Reset
                         Password</button>
                 </div>
