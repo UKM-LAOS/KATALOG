@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Produk;
 
 class AdminController extends Controller
 {
@@ -13,11 +14,11 @@ class AdminController extends Controller
 
     public function adminProduct()
     {
-        return view('adminProduct');
-    }
+        $produks = Produk::with('tokos')->get();
+    
+    // 
+    return view('adminProduct', ['produks' => $produks]);
+}
 
-    public function adminToko()
-    {
-        return view('adminToko');
-    }
+
 }

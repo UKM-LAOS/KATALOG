@@ -32,6 +32,10 @@ class Produk extends Model
 
     public function tokos()
     {
-        return $this->hasMany(Toko::class);
+        
+
+    return $this->belongsTo(Toko::class, 'idtoko');
+
+
     }
 }
