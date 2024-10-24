@@ -36,6 +36,8 @@ Route::middleware("auth")->group(function () {
     Route::get('/tokoadmin', [AdminController::class, 'adminToko']);
     Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
+   
+
 });
 
 // Route::get('/detail-product', function () {
