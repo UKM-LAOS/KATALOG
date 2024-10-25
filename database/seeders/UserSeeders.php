@@ -32,7 +32,5 @@ class UserSeeders extends Seeder
             User::create($val);
             
         }
-
-
     }
 }
