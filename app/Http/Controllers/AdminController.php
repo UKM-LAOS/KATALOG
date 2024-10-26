@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Toko;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Models\Produk;
 
 class AdminController extends Controller
@@ -34,6 +32,7 @@ class AdminController extends Controller
             $monthlyStoreCounts[$month] = $count;
         }
         $monthlyStoreData = array_values($monthlyStoreCounts);
+        
         return view(
             'admin',
             [
