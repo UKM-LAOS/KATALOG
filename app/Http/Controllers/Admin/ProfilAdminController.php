@@ -21,15 +21,20 @@ class ProfilAdminController extends Controller
 
     public function update(UsersRequest $request, User $profiladmin)
     {
-        $profiladmin->email = $request->email;
-        $profiladmin->password = $request->password;
-        if ($request->filled('password')) {
-            $profiladmin->password = bcrypt($request->input('password'));
+    $profiladmin->email = $request->email;
+
+    if ($request->filled('password')) {
+        $profiladmin->password = bcrypt($request->input('password'));
+    }else {
+            unset($profiladmin->password);
         }
 
+    if ($profiladmin->isDirty()) {
         $profiladmin->save();
-
         return redirect()->route('profiladmin.index')->with('success', 'Profil berhasil diperbarui');
+    }
+
+    return redirect()->route('profiladmin.index');
     }
 
 }

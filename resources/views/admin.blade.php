@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Produk admin')
+@section('title', 'Dashboard Admin')
 
 @section('content')
     <div class="flex justify-end mb-4">

@@ -34,6 +34,8 @@ Route::middleware("auth")->group(function () {
     Route::get('/tokoadmin', [AdminController::class, 'adminToko']);
     Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
+   
+
 });
 
 // Route::get('/detail-product', function () {
@@ -59,3 +61,15 @@ Route::middleware("auth")->group(function () {
 // Route::get('/profiladmin', function () {
 //     return view('adminProfil');
 // });
+
+Route::get('/dashboardtoko', function () {
+    return view('dashboardToko');
+});
+
+Route::get('/tambahproduk', function () {
+    return view('tambahProduct');
+});
+
+Route::get('/profiltoko', function () {
+    return view('profilToko');
+});
