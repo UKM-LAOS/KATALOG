@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers;
 use App\Http\Controllers\Admin\ProfilAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
 
 route::middleware('guest')->group(function () {
