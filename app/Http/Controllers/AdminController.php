@@ -47,10 +47,14 @@ class AdminController extends Controller
         $produks = Produk::with('tokos')->get();
         return view('adminProduct', ['produks' => $produks]);
     }
+    
 
     public function adminToko() {
-        return view('adminToko');
+        $tokos = Toko::all();
+        return view('adminToko', compact('tokos'));
     }
+
+
 
 
 }
