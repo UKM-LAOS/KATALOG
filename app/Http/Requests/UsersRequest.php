@@ -24,8 +24,8 @@ class UsersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' =>  ['required', 'min:5', 'email', Rule::unique('users', 'email')->ignore(Auth::id())],
-            'password' => ['required', 'min:8', 'max:255', 'nullable', 'string', 'confirmed'],
+            'email' =>  ['sometimes','min:5', 'email', Rule::unique('users', 'email')->ignore(Auth::id())],
+            'password' => ['sometimes','min:8', 'max:255', 'nullable', 'string', 'confirmed'],
         ];
     }
 }

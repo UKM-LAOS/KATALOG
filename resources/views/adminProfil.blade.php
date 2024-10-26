@@ -3,7 +3,17 @@
 @section('title', 'Profil Admin')
 
 @section('content')
-
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Sukses!',
+        text: '{{ session('success') }}',
+        timer: 2000, // durasi alert ditampilkan
+        showConfirmButton: false
+    });
+</script>
+@endif
     <div class="flex-1 lg:px-4">
         <div class="grid grid-cols-1 gap-4">
             <div class="bg-white p-4 rounded-md">
@@ -112,15 +122,4 @@
         konfirmPasswordField.disabled = passwordField.value.trim() === "";
     }
 </script>
-</script>
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Sukses!',
-        text: '{{ session('success') }}',
-        timer: 1500, // durasi alert ditampilkan
-        showConfirmButton: false
-    });
-</script>
-@endif
+
