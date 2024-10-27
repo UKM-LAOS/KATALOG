@@ -16,9 +16,41 @@
             overflow: hidden;
         }
     </style>
+    <script>
+        // Function to set a cookie
+        function setCookie(name, value, hours) {
+            const date = new Date();
+            date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/";
+        }
+
+        // Function to get a cookie
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Initialize Alpine.js with cookie check
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('loginPage', () => ({
+                login: getCookie('loginState') === 'false' ? false : true,
+
+                toggleLogin() {
+                    this.login = !this.login;
+                    setCookie('loginState', this.login, 1); // Set cookie with 1-hour expiration
+                }
+            }));
+        });
+    </script>
 </head>
 
-<body class="h-screen w-screen" x-data="{ login: true }">
+<body class="h-screen w-screen" x-data="loginPage">
     <div x-show="login" class="bg-[#2C4156] grid grid-cols-2 h-full w-full">
         <!-- Left div -->
         <div class="grid h-full place-items-center">
@@ -42,7 +74,7 @@
 
                 <!-- Text in the third row, aligned to the bottom -->
                 <div class="grid place-items-start justify-center">
-                    <button @click="login = !login"
+                    <button @click="toggleLogin"
                         class="bg-[#FAA832] text-xl text-white font-bold rounded-2xl px-[4rem] py-[0.75rem]">Letsgooo</button>
                 </div>
             </div>
