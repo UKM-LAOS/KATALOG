@@ -18,7 +18,7 @@
         @include('components.navbarToko')
 
         <div class="flex-1 p-4">
-            <div class="grid grid-cols-1 gap-4 mt-2 p-2 lg:ml-52">
+            <div class="grid grid-cols-1 gap-4 mt-2 p-2 lg:ml-60">
                 @yield('content')
             </div>
         </div>
