@@ -23,7 +23,7 @@ route::middleware('guest')->group(function () {
 
 
 Route::middleware("auth")->group(function () {
-    Route::get('/homepage', [PageController::class, 'homepage']);
+   
     Route::get('/product', [PageController::class, 'product']);
     Route::get('/searchProduct', [PageController::class, 'searchProduct']);
     Route::get('/filterProducts', [PageController::class, 'filterProduct'])->name('filter.products');
@@ -32,10 +32,11 @@ Route::middleware("auth")->group(function () {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/produkadmin', [AdminController::class, 'adminProduct']);
     Route::get('/tokoadmin', [AdminController::class, 'adminToko']);
-    Route::resource('/profiladmin', ProfilAdminController::class)->only(['index', 'update']);
+    Route::post('/tokoadmin/store', [AdminController::class, 'storeToko'])->name('adminToko.store');
+    Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
+   
 
-    Route::delete('/product/{id}', [AdminController::class, 'hapusProduct'])->name('product.delete');
 });
 
 // Route::get('/detail-product', function () {

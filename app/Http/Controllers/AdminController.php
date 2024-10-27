@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Toko;
 use App\Models\Produk;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -42,26 +43,41 @@ class AdminController extends Controller
         );
     }
 
-    public function hapusProduct($id) {
-        Produk::where('id', $id)->delete(); // Specify 'id' as the column name
-        $produks = Produk::with('tokos')->get();
-        return view('adminProduct', ['produks' => $produks]);
-    }
-    
-
     public function adminProduct()
     {
         $produks = Produk::with('tokos')->get();
         return view('adminProduct', ['produks' => $produks]);
     }
+    public function storeToko(Request $request)
+    {
+        
+        $request->validate([
+            'storeName' => 'required|string|max:255',
+            'storeLink' => 'required|url',
+            'storeDescription' => 'required|string',
+            'storeImage' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'iduser' => 'required|exists:users,id', 
+        ]);
     
-
-    public function adminToko() {
-        $tokos = Toko::all();
-        return view('adminToko', compact('tokos'));
+        
+        $imageName = time() . '.' . $request->storeImage->extension();
+        $request->storeImage->move(public_path('images/stores'), $imageName);
+    
+       
+        Toko::create([
+            'namatoko' => $request->storeName,
+            'linktoko' => $request->storeLink,
+            'deskripsitoko' => $request->storeDescription,
+            'fototoko' => 'images/stores/' . $imageName,
+            'iduser' => $request->iduser, 
+            "tglgabung" => now()
+        ]);
+    
+        return redirect()->route('/tokoadmin')->with('success', 'Toko berhasil ditambahkan');
     }
-
-
+    public function adminToko() {
+        return view('adminToko');
+    }
 
 
 }
