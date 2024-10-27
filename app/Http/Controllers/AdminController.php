@@ -42,6 +42,13 @@ class AdminController extends Controller
         );
     }
 
+    public function hapusProduct($id) {
+        Produk::where('id', $id)->delete(); // Specify 'id' as the column name
+        $produks = Produk::with('tokos')->get();
+        return view('adminProduct', ['produks' => $produks]);
+    }
+    
+
     public function adminProduct()
     {
         $produks = Produk::with('tokos')->get();

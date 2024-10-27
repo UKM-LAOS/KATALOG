@@ -32,10 +32,10 @@ Route::middleware("auth")->group(function () {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/produkadmin', [AdminController::class, 'adminProduct']);
     Route::get('/tokoadmin', [AdminController::class, 'adminToko']);
-    Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
+    Route::resource('/profiladmin', ProfilAdminController::class)->only(['index', 'update']);
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
-   
 
+    Route::delete('/product/{id}', [AdminController::class, 'hapusProduct'])->name('product.delete');
 });
 
 // Route::get('/detail-product', function () {
