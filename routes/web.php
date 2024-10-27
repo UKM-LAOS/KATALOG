@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\TokoController;
 
 route::middleware('guest')->group(function () {
     Route::get('/', [PageController::class, 'homepage']);
@@ -12,65 +13,30 @@ route::middleware('guest')->group(function () {
     Route::get('/productguest', [PageController::class, 'product']);
     Route::get('/contactguest', [PageController::class, 'contact']);
     Route::get('/detail-product-guest/{id}', [PageController::class, 'detailProduct'])->name('detail-product');
+    Route::get('/searchProduct', [PageController::class, 'searchProduct']);
+    Route::get('/filterProducts', [PageController::class, 'filterProduct'])->name('filter.products');
     Route::get('/login', [SessionController::class, 'index'])->name('login');
     Route::post('/login', [SessionController::class, 'login']);
 });
 
-// route::get("/home", function(){
-//     return redirect('admin');
-// });
 
 
 
-Route::middleware("auth")->group(function () {
-   
-    Route::get('/product', [PageController::class, 'product']);
-    Route::get('/searchProduct', [PageController::class, 'searchProduct']);
-    Route::get('/filterProducts', [PageController::class, 'filterProduct'])->name('filter.products');
-    Route::get('/contact', [PageController::class, 'contact']);
-    Route::get('/detail-product/{id}', [PageController::class, 'detailProduct'])->name('detail-product');
-    Route::get('/admin', [AdminController::class, 'index']);
+Route::middleware(['auth', 'role:Admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/produkadmin', [AdminController::class, 'adminProduct']);
     Route::get('/tokoadmin', [AdminController::class, 'adminToko']);
     Route::post('/tokoadmin/store', [AdminController::class, 'storeToko'])->name('adminToko.store');
     Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
-   
+});
+
+
+Route::middleware(['auth', 'role:toko'])->group(function () {
+    Route::get('/dashboardtoko', [TokoController::class, 'dashboard'])->name('dashboardToko');
+    Route::get('/tambahproduk', [TokoController::class, 'createProduct'])->name('tambahProduct');
+    Route::get('/profiltoko', [TokoController::class, 'profile'])->name('profilToko');
 
 });
 
-// Route::get('/detail-product', function () {
-//     return view('detailProduct');
-// });
-
-// Route::get('/login', function () {
-//     return view('login');
-// });
-
-// Route::get('/admin', function(){
-//     return view('admin');
-// });
-
-// Route::get('/produkadmin', function(){
-//     return view('adminProduct');
-// });
-
-// Route::get('/tokoadmin', function(){
-//     return view('adminToko');
-// });
-
-// Route::get('/profiladmin', function () {
-//     return view('adminProfil');
-// });
-
-Route::get('/dashboardtoko', function () {
-    return view('dashboardToko');
-});
-
-Route::get('/tambahproduk', function () {
-    return view('tambahProduct');
-});
-
-Route::get('/profiltoko', function () {
-    return view('profilToko');
-});
+Route::get('/logout', [SessionController::class, 'logout'])->name('logout');

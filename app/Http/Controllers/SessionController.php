@@ -32,7 +32,7 @@ class SessionController extends Controller
             if ($user->role == 'admin') {
                 return redirect('/admin');
             } elseif ($user->role == 'toko') {
-                return redirect('/homepage');
+                return redirect('/dashboardtoko');
             } else {
                 return redirect('/login')->withErrors('pesan', 'Role tidak dikenali');
             }
