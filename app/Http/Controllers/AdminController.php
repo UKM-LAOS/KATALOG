@@ -75,9 +75,15 @@ class AdminController extends Controller
     
         return redirect()->route('/tokoadmin')->with('success', 'Toko berhasil ditambahkan');
     }
+
     public function adminToko() {
-        return view('adminToko');
+        $tokos = Toko::withCount('produks')->get(); 
+        return view('adminToko', compact('tokos'));
     }
 
+    public function hapusProduct($id) {
+        Produk::where('id', $id)->delete();
+        return redirect()->route('adminProduct');
+    }
 
 }

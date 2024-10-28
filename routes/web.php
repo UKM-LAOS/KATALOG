@@ -29,6 +29,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('/tokoadmin/store', [AdminController::class, 'storeToko'])->name('adminToko.store');
     Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
+    Route::delete('/product/{id}', [AdminController::class, 'hapusProduct'])->name('product.delete');
 });
 
 
