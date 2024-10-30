@@ -104,7 +104,8 @@
                     <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
                     <input type="password" id="password" name="password" class="w-full border border-gray-300 p-2 rounded-md" required>
                 </div>
-                
+                <input type="hidden" name="iduser" value="{{ auth()->user()->id }}">
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Simpan</button>
             </form>
         </div>
     </div>

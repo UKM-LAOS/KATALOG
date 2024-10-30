@@ -63,7 +63,7 @@ class AdminController extends Controller
     
         $user = User::create([
             'name' => $request->storeName,
-            'email' => $request->storeLink,
+            'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => 'toko'
         ]);
