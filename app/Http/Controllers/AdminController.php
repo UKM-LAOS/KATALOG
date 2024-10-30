@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersRequest;
 use App\Models\Toko;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -59,7 +61,14 @@ class AdminController extends Controller
             'iduser' => 'required|exists:users,id', 
         ]);
     
-        
+        $user = User::create([
+            'name' => $request->storeName,
+            'email' => $request->storeLink,
+            'password' => bcrypt($request->password),
+            'role' => 'toko'
+        ]);
+
+
         $imageName = time() . '.' . $request->storeImage->extension();
         $request->storeImage->move(public_path('images/stores'), $imageName);
     
@@ -72,8 +81,10 @@ class AdminController extends Controller
             'iduser' => $request->iduser, 
             "tglgabung" => now()
         ]);
+
+        
     
-        return redirect()->route('/tokoadmin')->with('success', 'Toko berhasil ditambahkan');
+        return redirect()->view('adminToko')->with('success', 'Toko berhasil ditambahkan');
     }
 
     public function adminToko() {
@@ -83,7 +94,7 @@ class AdminController extends Controller
 
     public function hapusProduct($id) {
         Produk::where('id', $id)->delete();
-        return redirect()->route('adminProduct');
+        return redirect()->route('adminProduct')->with('success', 'Produk berhasil dihapus');
     }
 
 }

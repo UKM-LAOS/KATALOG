@@ -96,8 +96,15 @@
                     <label for="storeImage" class="block text-gray-700 font-semibold mb-2">Foto Toko</label>
                     <input type="file" id="storeImage" name="storeImage" class="w-full border border-gray-300 p-2 rounded-md" required>
                 </div>
-                <input type="hidden" name="iduser" value="{{ auth()->user()->id }}"> <!-- Menyertakan iduser -->
-                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Simpan</button>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email Pengguna</label>
+                    <input type="email" id="email" name="email" class="w-full border border-gray-300 p-2 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
+                    <input type="password" id="password" name="password" class="w-full border border-gray-300 p-2 rounded-md" required>
+                </div>
+                
             </form>
         </div>
     </div>
