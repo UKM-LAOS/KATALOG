@@ -50,6 +50,7 @@ class AdminController extends Controller
         $produks = Produk::with('tokos')->get();
         return view('adminProduct', ['produks' => $produks]);
     }
+    
     public function storeToko(Request $request)
     {
         
@@ -82,9 +83,7 @@ class AdminController extends Controller
             "tglgabung" => now()
         ]);
 
-        
-    
-        return redirect()->view('adminToko')->with('success', 'Toko berhasil ditambahkan');
+        return redirect('/tokoadmin')->with('success', 'Toko berhasil ditambahkan');
     }
 
     public function adminToko() {
@@ -94,7 +93,7 @@ class AdminController extends Controller
 
     public function hapusProduct($id) {
         Produk::where('id', $id)->delete();
-        return redirect()->route('adminProduct')->with('success', 'Produk berhasil dihapus');
+        return redirect('/produkadmin')->with('success', 'Produk berhasil dihapus');
     }
 
 }
