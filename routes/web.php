@@ -26,6 +26,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/produkadmin', [AdminController::class, 'adminProduct']);
     Route::get('/tokoadmin', [AdminController::class, 'adminToko']);
+    Route::post('/admin/toko/reset-password/{id}', [AdminController::class, 'resetPassword'])->name('admin.toko.reset-password');
     Route::post('/tokoadmin/store', [AdminController::class, 'storeToko'])->name('adminToko.store');
     Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
