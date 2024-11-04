@@ -3,6 +3,12 @@
 @section('title', 'Produk Admin')
 
 @section('content')
+@if (session('status'))
+    <div class=" text-black text-bold py-2 px-4 rounded mb-4">
+        {{ session('status') }}
+    </div>
+@endif
+
 <div class="flex-1 lg:px-4">
     <div class="bg-white p-4 rounded-md">
         <h2 class="text-gray-500 text-lg font-semibold pb-4">Data Produk</h2>
@@ -31,10 +37,12 @@
                                 onclick="openModal('modal{{ $index }}')">Detail</button>
                         </td>
                         <td class="py-2 px-4 border-b border-gray-300">
-                            <button class="status-button {{ $product->statusdisplay == 1 ? 'bg-[#08781A]' : 'bg-[#FFB83D]' }} text-white py-1 px-3 text-xs font-semibold rounded-2xl"
-                                data-product-id="{{ $product->id }}">
-                                {{ $product->statusdisplay == 1 ? 'Display' : 'Undisplay' }}
-                            </button>
+                            <form action="{{ route('produk.changeDisplay', $product->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="status-button {{ $product->statusdisplay == 1 ? 'bg-[#08781A]' : 'bg-[#FFB83D]' }} text-white py-1 px-3 text-xs font-semibold rounded-2xl">
+                                    {{ $product->statusdisplay == 1 ? 'Display' : 'Undisplay' }}
+                                </button>
+                            </form>
                         </td>
                         <td class="py-2 px-4 border-b border-gray-300">
                             <button class="bg-red-500 text-white py-1 px-2 text-xs font-semibold rounded-2xl" onclick="openModal('deleteModal')">Hapus</button>
@@ -58,7 +66,7 @@
                             </form>
                         </div>
                     </div>
-                    
+
                     <!-- Modal Component -->
                     <div id="modal{{ $index }}" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
                         <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative">
@@ -80,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     @endforeach
                 </tbody>
             </table>

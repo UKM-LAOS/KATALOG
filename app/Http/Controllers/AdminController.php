@@ -99,6 +99,17 @@ class AdminController extends Controller
         Produk::where('id', $id)->delete();
         return redirect('/produkadmin')->with('success', 'Produk berhasil dihapus');
     }
+    public function changeDisplay($id){
+        try {
+            $product = Produk::findOrFail($id);
+            $product->statusdisplay = $product->statusdisplay == 1 ? 2 : 1;
+            $product->save();
+            
+            return redirect()->back()->with('status', 'Status display berhasil diubah.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Maaf, status display tidak berhasil diubah.');
+        }
+    }
 
     public function resetPassword($id)
     {
