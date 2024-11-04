@@ -19,9 +19,6 @@ route::middleware('guest')->group(function () {
     Route::post('/login', [SessionController::class, 'login']);
 });
 
-
-
-
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/produkadmin', [AdminController::class, 'adminProduct']);
@@ -29,16 +26,17 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('/admin/toko/reset-password/{id}', [AdminController::class, 'resetPassword'])->name('admin.toko.reset-password');
     Route::post('/tokoadmin/store', [AdminController::class, 'storeToko'])->name('adminToko.store');
     Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
-    Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
     Route::delete('/product/{id}', [AdminController::class, 'hapusProduct'])->name('product.delete');
 });
 
 
-Route::middleware(['auth', 'role:toko'])->group(function () {
+Route::middleware(['auth', 'role:Toko|Admin'])->group(function () {
     Route::get('/dashboardtoko', [TokoController::class, 'dashboard'])->name('dashboardToko');
     Route::get('/tambahproduk', [TokoController::class, 'createProduct'])->name('tambahProduct');
-    Route::get('/profiltoko', [TokoController::class, 'profile'])->name('profilToko');
+});
 
+Route::middleware(['auth', 'role:Toko'])->group(function () {
+    Route::get('/profiltoko', [TokoController::class, 'profile'])->name('profilToko');
 });
 
 Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
