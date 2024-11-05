@@ -66,6 +66,7 @@
 
             <!-- Tombol Simpan dan Kembali -->
             <div class="flex justify-end mt-6">
+                {{-- <input type="hidden" name="idtoko" value="{{ auth()->user()->idtoko }}"> --}}
                 <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded-lg mr-2">Simpan</button>
                 <button type="button" class="bg-red-500 text-white py-2 px-4 rounded-lg" onclick="confirmBack()">Kembali</button>
 
