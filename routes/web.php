@@ -32,10 +32,11 @@ route::middleware('guest')->group(function () {
 // });
 
 
-Route::middleware(['auth', 'role:Toko'])->group(function () {
+// Route::middleware(['auth', 'role:Toko'])->group(function () {
     Route::get('/dashboardtoko', [TokoController::class, 'dashboard'])->name('dashboardToko');
-    Route::get('/tambahproduk', [TokoController::class, 'createProduct'])->name('tambahProduct');
     Route::get('/profiltoko', [TokoController::class, 'profile'])->name('profilToko');
-});
+    Route::get('/tambahproduk', [TokoController::class, 'createProductView']);
+    Route::post('/tambahproduk', [TokoController::class, 'createProduct'])->name('tambahProduct');
+
 
 Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
