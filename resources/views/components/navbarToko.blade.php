@@ -36,7 +36,7 @@
         <a class=" text-white py-2.5 px-4 my-4 rounded transition duration-200 flex items-center space-x-2"
             href="{{ url('/profiltoko') }}">
             <img src="img/admprofil.svg" alt="ProfilAdmin" class="h-6 mr-2">
-            <span class="relative group pb-1">Profil Admin
+            <span class="relative group pb-1">Profil Toko
                 <span
                     class="absolute left-0 bottom-0 w-full h-0.4 bg-white transform scale-x-0 transition-transform duration-200 {{ request()->is('profiltoko') ? 'scale-x-100' : 'group-hover:scale-x-100' }}"></span>
             </span>

@@ -8,44 +8,54 @@
         <div class="bg-white p-4 rounded-md">
             <h2 class="text-gray-500 text-lg font-semibold pb-4">Tambah Produk</h2>
 
+            <form action="{{ route('tambahProduct') }}" method="POST" enctype="multipart/form-data">
+                @csrf
             <div class="grid grid-cols-2 gap-4">
                 <!-- Form sebelah kiri -->
                 <div>
                     <div class="mb-4">
-                        <label for="namaBarang" class="block text-gray-700 font-semibold mb-2">Nama Barang</label>
-                        <input type="text" id="namaBarang" name="namaBarang" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Nama barang">
+                        <label for="namaproduk" class="block text-gray-700 font-semibold mb-2">Nama Produk</label>
+                        <input type="text" id="namaproduk" name="namaproduk" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Nama produk" required>
                     </div>
 
                     <div class="mb-4">
-                        <label for="hargaBarang" class="block text-gray-700 font-semibold mb-2">Harga Barang</label>
-                        <input type="number" id="hargaBarang" name="hargaBarang" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Harga barang">
+                        <label for="hargaproduk" class="block text-gray-700 font-semibold mb-2">Harga Produk</label>
+                        <input type="number" id="hargaproduk" name="hargaproduk" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Harga produk" required>
                     </div>
 
                     <div class="mb-4">
-                        <label for="linkPembelian" class="block text-gray-700 font-semibold mb-2">Link Pembelian</label>
-                        <input type="url" id="linkPembelian" name="linkPembelian" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Link pembelian">
+                        <label for="linkproduk" class="block text-gray-700 font-semibold mb-2">Link Pembelian</label>
+                        <input type="url" id="linkproduk" name="linkproduk" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Link pembelian" required>
                     </div>
 
                     <div class="mb-4">
-                        <label for="overviewBarang" class="block text-gray-700 font-semibold mb-2">Overview Barang</label>
-                        <textarea id="overviewBarang" name="overviewBarang" class="w-full border border-gray-300 p-2 rounded-md" rows="4" placeholder="Deskripsi toko"></textarea>
+                        <label for="overviewproduk" class="block text-gray-700 font-semibold mb-2">Overview Produk</label>
+                        <textarea id="overviewproduk" name="overviewproduk" class="w-full border border-gray-300 p-2 rounded-md" rows="4" placeholder="Deskripsi singkat produk" required></textarea>
                     </div>
 
                     <div class="mb-4">
-                        <label for="deskripsiBarang" class="block text-gray-700 font-semibold mb-2">Deskripsi Barang</label>
-                        <textarea id="deskripsiBarang" name="deskripsiBarang" class="w-full border border-gray-300 p-2 rounded-md" rows="4" placeholder="Deskripsi barang"></textarea>
+                        <label for="deskripsiproduk" class="block text-gray-700 font-semibold mb-2">Deskripsi Produk</label>
+                        <textarea id="deskripsiproduk" name="deskripsiproduk" class="w-full border border-gray-300 p-2 rounded-md" rows="4" placeholder="Deskripsi lengkap produk" required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="idkategori" class="block text-gray-700 font-semibold mb-2">Kategori Produk</label>
+                        <select id="idkategori" name="idkategori" class="w-full border border-gray-300 p-2 rounded-md" required>
+                            <option value="">Pilih Kategori</option>
+                            @foreach ($kategoris as $kategori)
+                                <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
                 <!-- Form sebelah kanan -->
                 <div class="flex items-center justify-center">
+                    
                     <div class="border-2 border-dashed border-gray-300 w-40 h-40 flex flex-col items-center justify-center rounded-md">
                         <div class="text-gray-400 text-center">
-                            <!-- Input file yang disembunyikan -->
-                            <input type="file" id="fileInput" style="display: none;" onchange="showFileName()" />
+                            <input type="file" id="fotoproduk" name="fotoproduk" style="display: none;" accept="image/*" required onchange="showFileName()">
                             
-                            <!-- Elemen untuk menampilkan ikon atau nama file -->
-                            <a href="javascript:void(0);" id="uploadIcon" onclick="document.getElementById('fileInput').click();">
+                            <a href="javascript:void(0);" id="uploadIcon" onclick="document.getElementById('fotoproduk').click();">
                                 <i class="fas fa-plus text-4xl"></i>
                             </a>
                             <p class="mt-2" id="uploadText">Upload Image</p>
@@ -56,8 +66,10 @@
 
             <!-- Tombol Simpan dan Kembali -->
             <div class="flex justify-end mt-6">
-                <button class="bg-green-500 text-white py-2 px-4 rounded-lg mr-2" onclick="showSuccessAlert()">Simpan</button>
-                <button class="bg-red-500 text-white py-2 px-4 rounded-lg" onclick="confirmBack()">Kembali</button>
+                {{-- <input type="hidden" name="idtoko" value="{{ auth()->user()->idtoko }}"> --}}
+                <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded-lg mr-2">Simpan</button>
+                <button type="button" class="bg-red-500 text-white py-2 px-4 rounded-lg" onclick="confirmBack()">Kembali</button>
+
             </div>
         </div>
     </div>
@@ -118,23 +130,15 @@
     function goBack() {
         window.history.back();
     }
-
-    // Fungsi untuk menampilkan alert sukses
-    function showSuccessAlert() {
-        // Simulasikan proses simpan (bisa tambahkan logika penyimpanan sebenarnya)
+    function showSuccessAlert(event) {
         document.getElementById('successAlert').classList.remove('hidden');
     }
 
     function showFileName() {
-        const fileInput = document.getElementById('fileInput');
-        const uploadIcon = document.getElementById('uploadIcon');
-        const uploadText = document.getElementById('uploadText');
-
-        // Jika ada file yang dipilih, ubah ikon menjadi nama file
-        if (fileInput.files.length > 0) {
-            const fileName = fileInput.files[0].name;
-            uploadIcon.innerHTML = fileName; // Mengganti ikon dengan nama file
-            uploadText.style.display = 'none'; // Sembunyikan teks "Upload Image"
-        }
+    const fileInput = document.getElementById('fotoproduk');
+    const uploadText = document.getElementById('uploadText');
+    if (fileInput.files.length > 0) {
+        uploadText.textContent = fileInput.files[0].name;
     }
+}
 </script>
