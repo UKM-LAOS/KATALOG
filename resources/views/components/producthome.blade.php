@@ -1,6 +1,6 @@
 
 <div class="container mx-auto my-auto"> 
-        <div class="container flex items-center justify-center z-1">
+        <div class="">
             <div class="container px-full py-5 mr-8 ml-8 overflow:hidden">
                 <h1 class="text-secondary text-3.2 font-medium tracking-wider text-center">Paling banyak dicari</h1>
                 <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-13.8">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="bg-white rounded-lg shadow-xl overflow-hidden">
-                        <div class="relative p-1h p-1w">
+                        <div class="relative p-[1vh] p-[1vw]">
                             <div class="absolute mt-2h right-2h">
                                 <div class="ml-2vh py-0.2 px-1.6vw text-sans tracking-wider text-1.2 text-white bg-iconstyle rounded-full">HP</div>
                             </div>
