@@ -20,7 +20,7 @@ route::middleware('guest')->group(function () {
 });
 
 
-Route::middleware(['auth', 'role:Admin'])->group(function () {
+// Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/produkadmin', [AdminController::class, 'adminProduct']);
     Route::get('/tokoadmin', [AdminController::class, 'adminToko']);
@@ -29,15 +29,12 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::resource('/profiladmin', ProfilAdminController::class)->only(['index','update']);
     Route::delete('/product/{id}', [AdminController::class, 'hapusProduct'])->name('product.delete');
     Route::post('/produk/{id}/change-display', [AdminController::class, 'changeDisplay'])->name('produk.changeDisplay');
-});
+// });
 
-
-Route::middleware(['auth', 'role:Toko|Admin'])->group(function () {
-    Route::get('/dashboardtoko', [TokoController::class, 'dashboard'])->name('dashboardToko');
-    Route::get('/tambahproduk', [TokoController::class, 'createProduct'])->name('tambahProduct');
-});
 
 Route::middleware(['auth', 'role:Toko'])->group(function () {
+    Route::get('/dashboardtoko', [TokoController::class, 'dashboard'])->name('dashboardToko');
+    Route::get('/tambahproduk', [TokoController::class, 'createProduct'])->name('tambahProduct');
     Route::get('/profiltoko', [TokoController::class, 'profile'])->name('profilToko');
 });
 
