@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class SessionController extends Controller
 {
@@ -19,20 +20,19 @@ class SessionController extends Controller
             'password' => 'required',
         ], [
             'email.required' => 'Email harus diisi ya sayang',
+            'email.email' => 'Format email tidak valid',
             'password.required' => 'Password harus diisi ya sayang',
         ]);
 
-        $infologin = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
+        $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($infologin)) {
-            $user = Auth::user();
-            if ($user->role == 'admin') {
-                return redirect('/admin');
-            } elseif ($user->role == 'toko') {
-                return redirect('/dashboardtoko');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            $user = User::find(Auth::user()->id);
+            if ($user->hasRole('Admin')) {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->hasRole('Toko')) {
+                return redirect()->route('dashboardToko');
             } else {
                 return redirect('/login')->withErrors('pesan', 'Role tidak dikenali');
             }

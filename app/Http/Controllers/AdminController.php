@@ -55,26 +55,37 @@ class AdminController extends Controller
 
     public function storeToko(Request $request)
     {
-
         $request->validate([
             'storeName' => 'required|string|max:255',
             'storeLink' => 'required|url',
             'storeDescription' => 'required|string',
             'storeImage' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6', 
         ]);
 
         $user = User::create([
             'name' => $request->storeName,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => 'toko'
+            'password' => bcrypt($request->password), 
+            'role' => 'Toko',
         ]);
 
+        $user->assignRole('Toko');
+
+        $permissions = [
+            'view toko dashboard',
+            'view toko profile',
+            'create product',
+            'search products',
+            'filter products',
+            'view contact page',
+            'view guest products',
+        ];
+        $user->givePermissionTo($permissions);
 
         $imageName = time() . '.' . $request->storeImage->extension();
         $request->storeImage->move(public_path('images/stores'), $imageName);
-
 
         Toko::create([
             'namatoko' => $request->storeName,
@@ -82,7 +93,7 @@ class AdminController extends Controller
             'deskripsitoko' => $request->storeDescription,
             'fototoko' => 'images/stores/' . $imageName,
             'iduser' => $user->id,
-            "tglgabung" => now()
+            'tglgabung' => now(),
         ]);
 
         return redirect('/tokoadmin')->with('success', 'Toko berhasil ditambahkan');
