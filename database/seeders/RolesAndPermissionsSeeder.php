@@ -10,7 +10,7 @@ class RolesAndPermissionsSeeder extends Seeder
 {
     public function run()
     {
-        $permissions = [];
+        $permissions = ['view admin dashboard', 'manage admin products', 'manage admin stores', 'manage admin profile', 'view products', 'logout', 'search products', 'view contact', 'filter products', 'view toko dashboard', 'add product', 'view toko profile'];
 
         foreach ($permissions as $permission) {
             $existingPermission = Permission::where('name', $permission)->first();
@@ -20,8 +20,8 @@ class RolesAndPermissionsSeeder extends Seeder
         }
 
         $roles = [
-            'Toko' => [],
-            'Admin' => [],
+            'Toko' => ['view products', 'logout', 'search products', 'view contact', 'filter products', 'view toko dashboard', 'add product', 'view toko profile'],
+            'Admin' => ['view admin dashboard', 'manage admin products', 'manage admin stores', 'manage admin profile', 'logout'],
         ];
 
         foreach ($roles as $roleName => $rolePermissions) {

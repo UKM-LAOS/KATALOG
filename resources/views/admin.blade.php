@@ -1,8 +1,17 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Produk admin')
+@section('title', 'Dashboard Admin')
 
 @section('content')
+    <div class="flex justify-end mb-4">
+        <form action="{{ route('logout') }}" method="get">
+            @csrf
+            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                Logout
+            </button>
+        </form>
+    </div>
+
     <div class="flex-1 lg:px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-white p-4 rounded-md">
@@ -24,20 +33,21 @@
             </div>
         </div>
     </div>
+    
     @push('js')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         window.onload = function() {
+            var produkData = @json($monthlyProductData);
+            var tokoData = @json($monthlyStoreData);
             var ctx1 = document.getElementById('produkChart').getContext('2d');
             var produkChart = new Chart(ctx1, {
                 type: 'bar',
                 data: {
-                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
-                        'Oktober', 'November', 'Desember'
-                    ],
+                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
                     datasets: [{
                         label: 'Jumlah Produk',
-                        data: [20, 30, 40, 50, 60, 70, 30, 40, 50, 60, 70, 30],
+                        data: produkData,
                         backgroundColor: 'rgba(53, 162, 235, 0.5)',
                         borderColor: 'rgba(53, 162, 235, 1)',
                         borderWidth: 1
@@ -64,12 +74,10 @@
             var tokoChart = new Chart(ctx2, {
                 type: 'line',
                 data: {
-                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
-                        'Oktober', 'November', 'Desember'
-                    ],
+                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
                     datasets: [{
                         label: 'Jumlah Toko',
-                        data: [20, 30, 40, 50, 60, 70, 30, 40, 50, 60, 70, 30],
+                        data: tokoData,
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
