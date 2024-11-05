@@ -37,10 +37,20 @@
                         <label for="deskripsiproduk" class="block text-gray-700 font-semibold mb-2">Deskripsi Produk</label>
                         <textarea id="deskripsiproduk" name="deskripsiproduk" class="w-full border border-gray-300 p-2 rounded-md" rows="4" placeholder="Deskripsi lengkap produk" required></textarea>
                     </div>
+                    <div class="mb-4">
+                        <label for="idkategori" class="block text-gray-700 font-semibold mb-2">Kategori Produk</label>
+                        <select id="idkategori" name="idkategori" class="w-full border border-gray-300 p-2 rounded-md" required>
+                            <option value="">Pilih Kategori</option>
+                            @foreach ($kategoris as $kategori)
+                                <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Form sebelah kanan -->
                 <div class="flex items-center justify-center">
+                    
                     <div class="border-2 border-dashed border-gray-300 w-40 h-40 flex flex-col items-center justify-center rounded-md">
                         <div class="text-gray-400 text-center">
                             <input type="file" id="fotoproduk" name="fotoproduk" style="display: none;" accept="image/*" required onchange="showFileName()">
