@@ -55,13 +55,12 @@ class UserController extends Controller
     private function assignDefaultPermissions($user, $roleName)
     {
         $permissions = [];
-
         switch ($roleName) {
             case 'Admin':
-                $permissions = [];
+                $permissions = ['view admin dashboard', 'manage admin products', 'manage admin stores', 'manage admin profile', 'logout'];
                 break;
             case 'Toko':
-                $permissions = [];
+                $permissions = ['view products', 'logout', 'search products', 'view contact', 'filter products', 'view toko dashboard', 'add product', 'view toko profile'];
                 break;
         }
 
@@ -69,6 +68,7 @@ class UserController extends Controller
             $user->givePermissionTo($permissions);
         }
     }
+
 
     public function update(Request $request, $id)
     {

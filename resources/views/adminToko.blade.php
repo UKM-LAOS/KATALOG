@@ -137,8 +137,13 @@
                     elektronik.</p>
                 <p class="text-gray-600 mb-4"><strong>Email Toko:</strong> email@toko.com</p>
                 <div class="flex gap-4">
+<<<<<<< HEAD
+                    <a href="/kunjungitoko" class="bg-blue-500 text-white py-2 px-4 rounded-lg inline-block"
+                        target="_blank">Kunjungi Toko</a>
+=======
                     <a href="tambahproduk" class="bg-blue-500 text-white py-2 px-4 rounded-lg inline-block">Kunjungi
                         Toko</a>
+>>>>>>> 8528ea42b7fb765209cea48e3bb884e1bc002246
                     <button class="bg-red-500 text-white py-2 px-4 rounded-lg" onclick="openResetPasswordModal()">Reset
                         Password</button>
                 </div>
