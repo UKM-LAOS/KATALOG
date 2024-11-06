@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use Illuminate\Validation\Rule;
@@ -73,7 +74,8 @@ class TokoController extends Controller
 
     public function profile()
     {
-        return view('profilToko');
+        $user = Auth::user()->load('toko');
+        return view('profilToko', compact('user'));
     }
 
     public function createProductview()

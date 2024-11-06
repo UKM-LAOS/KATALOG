@@ -5,14 +5,14 @@
 @section('content')
     <div class=" bg-white rounded-lg px-3 py-2 shadow-md mx-auto">
         <d class="flex flex-col">
-            <h1 class="text-left mt-2 font-semibold text-4xl mb-6">Axio Shop</h1>
-            <h1 class="text-left text-1xl"><b>Email</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp Xauxau@gmail.com</h1>
+            <h1 class="text-left mt-2 font-semibold text-4xl mb-6">{{$user->toko->namatoko}}</h1>
+            <h1 class="text-left text-1xl"><b>Email</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp {{$user->email}}</h1>
             <br>
             <div class="flex gap-4 mb-4 ">
                 <img src="/img/TOKO_KOMPUTER.jpeg" alt="LAOS MUDA TIDAK MENYERAH LAOS JAYA" class="w-72">
                 <div class=" bg-bg-zinc-400 max-w-[784] shadow-md mx-auto">
                     <h1 class="mt-[20] text-xl ml-4 font-semibold mb-[12]">Deskripsi Toko</h1>
-                    <p class="ml-4">Axio Shop sendiri merupakan toko reparasi dan penjualan kebutuhan komputer, Axio Shop menawarkan berbagai kebutuhan dari perbaikan atau reparasi, kebutuhan komputer, handphone, kabel dan sebaginya. <br> Axio Shop: Perbaikan Cepat, Hasil Maksimal Bosan menunggu lama untuk perbaikan gadget? Pilih Axio Shop! Kami berkomitmen untuk menyelesaikan perbaikan secepat mungkin tanpa mengorbankan kualitas. Nikmati layanan antar-jemput gratis dan garansi untuk setiap perbaikan.</p>
+                    <p class="ml-4">{{$user->toko->deskripsitoko}}</p>
                 </div>
             </div>
                 <div class="flex ml-36">
@@ -72,6 +72,35 @@
                         class="w-full border border-gray-300 p-2 rounded-md" disabled>
                 </div>
 
+                 <!-- Input Nama Toko -->
+                 <div class="mb-4">
+                    <label for="fototoko" class="block text-gray-700 font-semibold mb-2">Nama Toko</label>
+                    <input type="file" id="fototoko" name="fototoko"
+                        class="w-full border border-gray-300 p-2 rounded-md @error('fototoko') border-red-500 @enderror"
+                        value="{{ old('fototoko', $user->toko->fototoko) }}" required>
+
+                    <!-- Error for Nama Toko -->
+                    @error('fototoko')
+                    <div class="text-red-500 text-sm mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                  <!-- Foto Toko -->
+                  <div class="mb-4">
+                    <label for="fototoko" class="block text-gray-700 font-semibold mb-2">Foto Toko</label>
+                    <input type="text" id="namatoko" name="namatoko"
+                        class="w-full border border-gray-300 p-2 rounded-md @error('namatoko') border-red-500 @enderror"
+                        value="{{ old('namatoko', $user->toko->namatoko) }}" required>
+
+                    <!-- Error for Foto Toko -->
+                    @error('namatoko')
+                    <div class="text-red-500 text-sm mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
                 <!-- Tombol Simpan -->
                 <div class="flex justify-end">
                     <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Simpan</button>

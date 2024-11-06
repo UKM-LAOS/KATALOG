@@ -18,6 +18,10 @@ class Toko extends Model
 
     ];
 
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+
 
     public function user()
     {
