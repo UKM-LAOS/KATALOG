@@ -28,4 +28,15 @@ class UsersRequest extends FormRequest
             'password' => ['sometimes','min:8', 'max:255', 'nullable', 'string', 'confirmed'],
         ];
     }
+    public function messages()
+{
+    return [
+        'email.min' => 'Alamat email harus terdiri dari minimal 5 karakter.',
+        'email.email' => 'Alamat email harus dalam format yang valid.',
+        'email.unique' => 'Alamat email ini sudah digunakan oleh pengguna lain.',
+        'password.min' => 'Kata sandi harus terdiri dari minimal 8 karakter.',
+        'password.max' => 'Kata sandi tidak boleh lebih dari 255 karakter.',
+        'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai.',
+    ];
+}
 }
