@@ -62,7 +62,14 @@ class AdminController extends Controller
             'storeImage' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6', 
+        ], [
+            'storeName.required' => 'Nama toko wajib diisi.',
+            'password.min' => 'Password harus memiliki minimal 6 karakter yaa cantikk..',
+            'email.unique' => 'Email sudah terdaftar.',
+            'storeImage.max' => 'Ukuran gambar maksimal 2MB.',
+            
         ]);
+    
 
         $user = User::create([
             'name' => $request->storeName,

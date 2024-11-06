@@ -15,11 +15,9 @@ class Toko extends Model
         'deskripsitoko',
         'tglgabung',
         'fototoko'
+
     ];
 
-    public function users(){
-        return $this->hasMany(User::class);
-    }
 
     public function user()
     {
