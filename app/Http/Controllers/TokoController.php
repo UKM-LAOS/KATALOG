@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\ProfilTokoRequest;
 use App\Models\User;
-use Auth;
+// use Auth;
 use Hash;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use Illuminate\Validation\Rule;
 use App\Models\Kategori;
-use Storage;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Hash as FacadesHash;
+use Illuminate\Support\Facades\Storage;
 
 class TokoController extends Controller
 {
@@ -88,7 +87,7 @@ class TokoController extends Controller
         $user = User::findOrFail($id);
         $user->email = $request->email;
         if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+            $user->password = FacadesHash::make($request->password);
         }
     
         // $user->save();

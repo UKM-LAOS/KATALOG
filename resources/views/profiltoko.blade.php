@@ -15,12 +15,15 @@
 </script>
 @endif
     <div class=" bg-white rounded-lg px-3 py-2 shadow-md mx-auto">
-        <d class="flex flex-col">
+        <div class="flex flex-col">
+            <div class="flex items-center justify-between mb-6">
             <h1 class="text-left mt-2 font-semibold text-4xl mb-6">{{$user->toko->namatoko}}</h1>
+            <button class="align-center font-semibold w-32 h-[32] text-[2] bg-red-600 text-red-50 rounded-1 cursor-pointer hover:bg-red-500 ml-44 mb-4"><a href="{{route('logout')}}">Logout</a></button>
+            </div>
             <h1 class="text-left text-1xl"><b>Email</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp {{$user->email}}</h1>
             <br>
             <div class="flex gap-4 mb-4 ">
-                <img src="/img/TOKO_KOMPUTER.jpeg" alt="LAOS MUDA TIDAK MENYERAH LAOS JAYA" class="w-72">
+                <img src="{{ asset('storage/' . $user->toko->fototoko) }}" alt="LAOS MUDA TIDAK MENYERAH LAOS JAYA" class="w-72">
                 <div class=" bg-bg-zinc-400 max-w-[784] shadow-md mx-auto">
                     <h1 class="mt-[20] text-xl ml-4 font-semibold mb-[12]">Deskripsi Toko</h1>
                     <p class="ml-4">{{$user->toko->deskripsitoko}}</p>

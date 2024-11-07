@@ -49,8 +49,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function toko()
-    {
-        return $this->hasOne(Toko::class, 'iduser');
-    }
+    // public function toko()
+    // {
+    //     return $this->hasOne(Toko::class, 'iduser');
+    // }
 }
