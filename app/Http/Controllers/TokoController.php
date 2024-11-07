@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\ProfilTokoRequest;
+use App\Models\User;
 use Auth;
+use Hash;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use Illuminate\Validation\Rule;
 use App\Models\Kategori;
+use Storage;
 
 
 class TokoController extends Controller
@@ -65,6 +69,52 @@ class TokoController extends Controller
         $user = Auth::user()->load('toko');
         return view('profilToko', compact('user'));
     }
+
+    public function profileEdit(ProfilTokoRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->email = $request->email;
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+    
+        // $user->save();
+
+        $toko = $user->toko;
+        $toko->namatoko = $request->namatoko;
+        $toko->linktoko = $request->linktoko;
+        $toko->deskripsitoko = $request->deskripsitoko;
+
+        if ($request->hasFile('fototoko')) {
+            if ($toko->fototoko) {
+                Storage::delete('public/' . $toko->fototoko);
+            }
+    
+            // Simpan foto toko baru
+            $toko->fototoko = $request->file('fototoko')->store('toko', 'public');
+            // if ($toko->fototoko) {
+            //     $fotoLama = storage_path('app/public' . $toko->fototoko);
+            //     if (file_exists($fotoLama)) {
+            //         unlink($fotoLama);
+            //     }
+            // }
+
+            // $tempatFoto = $request->file('fototoko')->store('FotoToko');
+            // $tempatFoto = str_replace('public/', '', $tempatFoto);
+            // $toko->fototoko= $tempatFoto;
+        }
+        // $toko->save();
+        if ($user->isDirty() || $toko->isDirty()) {
+            $user->save();
+            $toko->save();
+            return redirect()->route('profilToko')->with('success', 'Profil berhasil diperbarui');
+        }
+    
+        return redirect()->route('profilToko');
+        // return redirect()->route('profilToko')->with('success', 'Profil toko berhasil diperbarui.');
+
+    }
+
 
     public function createProductview()
     {
