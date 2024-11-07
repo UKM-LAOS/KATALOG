@@ -3,6 +3,17 @@
 @section('title', 'Profil Admin')
 
 @section('content')
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Sukses!',
+        text: '{{ session('success') }}',
+        timer: 2000, // durasi alert ditampilkan
+        showConfirmButton: false
+    });
+</script>
+@endif
     <div class=" bg-white rounded-lg px-3 py-2 shadow-md mx-auto">
         <d class="flex flex-col">
             <h1 class="text-left mt-2 font-semibold text-4xl mb-6">{{$user->toko->namatoko}}</h1>
@@ -31,7 +42,7 @@
             <h2 class="text-xl font-semibold mb-4">Edit Profil</h2>
 
             <!-- Form Update Profil -->
-            {{-- <form action="{{route('profiladmin.update', $user->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('profilTokoEdit', $user->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -42,7 +53,6 @@
                         class="w-full border border-gray-300 p-2 rounded-md @error('email') border-red-500 @enderror"
                         value="{{ old('email', $user->email) }}" required>
 
-                    <!-- Error for Email -->
                     @error('email')
                     <div class="text-red-500 text-sm mt-2">
                         {{ $message }}
@@ -57,7 +67,6 @@
                         class="w-full border border-gray-300 p-2 rounded-md @error('password') border-red-500 @enderror"
                         oninput="toggleKonfirmPassword()">
 
-                    <!-- Error for Password -->
                     @error('password')
                     <div class="text-red-500 text-sm mt-2">
                         {{ $message }}
@@ -71,15 +80,31 @@
                     <input type="password" id="password_confirmation" name="password_confirmation"
                         class="w-full border border-gray-300 p-2 rounded-md" disabled>
                 </div>
-
-                 <!-- Input Nama Toko -->
+                 <!-- Nama Toko -->
                  <div class="mb-4">
-                    <label for="fototoko" class="block text-gray-700 font-semibold mb-2">Nama Toko</label>
-                    <input type="file" id="fototoko" name="fototoko"
-                        class="w-full border border-gray-300 p-2 rounded-md @error('fototoko') border-red-500 @enderror"
-                        value="{{ old('fototoko', $user->toko->fototoko) }}" required>
+                    <label for="namatoko" class="block text-gray-700 font-semibold mb-2">Nama Toko</label>
+                    <input type="text" id="namatoko" name="namatoko"
+                        class="w-full border border-gray-300 p-2 rounded-md @error('namatoko') border-red-500 @enderror"
+                        value="{{ old('namatoko', $user->toko->namatoko) }}" required>
 
-                    <!-- Error for Nama Toko -->
+                    @error('namatoko')
+                    <div class="text-red-500 text-sm mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                 <!-- Input Foto Toko -->
+                 <div class="mb-4">
+                    <label for="fototoko" class="block text-gray-700 font-semibold mb-2">Foto Toko</label>
+                    <input type="file" name="fototoko" id="fototoko" />
+                    @if($user->toko->fototoko)
+                    <img src="{{ asset('storage/' . $user->toko->fototoko) }}" alt="Gambar Tempat" class="mt-2" width="150">
+                    @endif
+                    {{-- <input type="file" id="fototoko" name="fototoko"
+                        class="w-full border border-gray-300 p-2 rounded-md @error('fototoko') border-red-500 @enderror"
+                        value="{{ old('fototoko', $user->toko->fototoko) }}" required> --}}
+
                     @error('fototoko')
                     <div class="text-red-500 text-sm mt-2">
                         {{ $message }}
@@ -87,15 +112,28 @@
                     @enderror
                 </div>
 
-                  <!-- Foto Toko -->
-                  <div class="mb-4">
-                    <label for="fototoko" class="block text-gray-700 font-semibold mb-2">Foto Toko</label>
-                    <input type="text" id="namatoko" name="namatoko"
-                        class="w-full border border-gray-300 p-2 rounded-md @error('namatoko') border-red-500 @enderror"
-                        value="{{ old('namatoko', $user->toko->namatoko) }}" required>
+                 <!-- Input Link Toko -->
+                 <div class="mb-4">
+                    <label for="linktoko" class="block text-gray-700 font-semibold mb-2">Link Toko</label>
+                    <input type="text" id="linktoko" name="linktoko"
+                        class="w-full border border-gray-300 p-2 rounded-md @error('linktoko') border-red-500 @enderror"
+                        value="{{ old('linktoko', $user->toko->linktoko) }}" required>
 
-                    <!-- Error for Foto Toko -->
-                    @error('namatoko')
+                    @error('linktoko')
+                    <div class="text-red-500 text-sm mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                <!--Input Deskripsi Toko -->
+                <div class="mb-4">
+                    <label for="deskripsitoko" class="block text-gray-700 font-semibold mb-2">Deskripsi Toko</label>
+                    <textarea type="text" id="deskripsitoko" name="deskripsitoko"
+                        class="w-full border border-gray-300 p-2 rounded-md" cols="30" rows="10"
+                      required>{{ old('deskripsitoko', $user->toko->deskripsitoko) }} 
+                    </textarea>
+                    @error('deskripsitoko')
                     <div class="text-red-500 text-sm mt-2">
                         {{ $message }}
                     </div>
@@ -105,7 +143,7 @@
                 <div class="flex justify-end">
                     <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Simpan</button>
                 </div>
-            </form> --}}
+            </form>
         </div>
     </div>
 @endsection
