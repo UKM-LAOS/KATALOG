@@ -10,6 +10,8 @@ use App\Models\Produk;
 use Illuminate\Validation\Rule;
 use App\Models\Kategori;
 use Storage;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class TokoController extends Controller
@@ -23,7 +25,10 @@ class TokoController extends Controller
     public function createProduct(Request $request)
 {
     // Validasi input
+    $user = Auth::user();
+    $tokoId = $user->toko ? $user->toko->id : null;
     // dd($request->all());
+
     $request->validate([
         'namaproduk' => [
             'required',
@@ -32,22 +37,27 @@ class TokoController extends Controller
             Rule::unique('produks')->where(function ($query) use ($request) {
                 return $query->where('idtoko', $request->idtoko); //logic ini bwat ngecek produk unique di toko yang sama
             }),
+
+            
         ],
         'hargaproduk' => 'required|numeric',
         'overviewproduk' => 'required|string',
         'deskripsiproduk' => 'required|string',
         'linkproduk' => 'required|url',
         'fotoproduk' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'idtoko' => 'required|exists:tokos,id',
         'idkategori' => 'required|exists:kategoris,id',
+        'statusdisplay' => 'required|in:1,0',
+    ],  [
+        
+        'namaproduk.unique' => 'Nama produk sudah ada, jangan mendua!'
+        
     ]);
+    
 
     
     $imageName = time() . '.' . $request->fotoproduk->extension(); 
-    $request->fotoproduk->move(public_path('images/stores'), $imageName); //set direc
-  
+    $request->fotoproduk->move(public_path('images/stores'), $imageName);//set direc
 
-    
     
     Produk::create([
         'namaproduk' => $request->namaproduk,
@@ -56,10 +66,13 @@ class TokoController extends Controller
         'deskripsiproduk' => $request->deskripsiproduk,
         'linkproduk' => $request->linkproduk,
         'fotoproduk' => 'img/' . $imageName, 
-        'idtoko' => $request->idtoko,
+        'idtoko' => $tokoId,
         'idkategori' => $request->idkategori,
         'tglposting' => now(),
+        'statusdisplay' => $request->statusdisplay,
     ]);
+
+
 
     return redirect()->back()->with('success', 'Produk berhasil ditambahkan');
 }

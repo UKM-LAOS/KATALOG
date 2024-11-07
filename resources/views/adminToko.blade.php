@@ -170,6 +170,33 @@
 
         </div>
     </div>
+    <@if (session('success'))
+<div id="successAlert" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/3 lg:w-1/4 relative">
+        <h2 class="text-xl font-semibold mb-4">Berhasil Menambahkan Produk</h2>
+        <p class="mb-4">{{ session('success') }}</p>
+        <div class="flex justify-end">
+            <a href="/dashboardtoko" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Cek Dashboard</a>
+        </div>
+    </div>
+</div>
+@endif
+@if ($errors->any())
+    <div id="errorAlert" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/3 lg:w-1/4 relative">
+            <h2 class="text-xl font-semibold mb-4">Terjadi Kesalahan</h2>
+            <ul class="mb-4 text-red-600">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <div class="flex justify-end">
+                <button class="bg-gray-500 text-white py-2 px-4 rounded-lg" onclick="closeModal('errorAlert')">Tutup</button>
+            </div>
+        </div>
+    </div>
+@endif
+
 @endsection
 <script>
     function openModal(modalId) {
@@ -185,4 +212,6 @@
     function openResetPasswordModal() {
         document.getElementById('resetPasswordModal').classList.remove('hidden');
     }
+
+    
 </script>
