@@ -9,7 +9,7 @@
         icon: 'success',
         title: 'Sukses!',
         text: '{{ session('success') }}',
-        timer: 2000, // durasi alert ditampilkan
+        timer: 2000, 
         showConfirmButton: false
     });
 </script>
