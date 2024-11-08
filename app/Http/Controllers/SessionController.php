@@ -25,10 +25,13 @@ class SessionController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
+        
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             $user = User::find(Auth::user()->id);
+
+
             if ($user->hasRole('Admin')) {
                 return redirect()->route('admin.dashboard');
             } elseif ($user->hasRole('Toko')) {

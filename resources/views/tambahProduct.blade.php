@@ -10,9 +10,16 @@
 
             <form action="{{ route('tambahProduct') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="idtoko" value="{{ auth()->user()->toko->id }}">
             <div class="grid grid-cols-2 gap-4">
                 <!-- Form sebelah kiri -->
-                <div>
+                <div class="mb-4">
+                    <label for="statusdisplay" class="block text-sm font-medium text-gray-700">Status Display</label>
+                    <select name="statusdisplay" id="statusdisplay" class="form-input mt-1 block w-full">
+                        <option value="1" selected>Display</option>
+                        <option value="0">Gamau</option>
+                    </select>
+                </div>
                     <div class="mb-4">
                         <label for="namaproduk" class="block text-gray-700 font-semibold mb-2">Nama Produk</label>
                         <input type="text" id="namaproduk" name="namaproduk" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Nama produk" required>
@@ -66,7 +73,7 @@
 
             <!-- Tombol Simpan dan Kembali -->
             <div class="flex justify-end mt-6">
-                {{-- <input type="hidden" name="idtoko" value="{{ auth()->user()->idtoko }}"> --}}
+                {{--  --}}
                 <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded-lg mr-2">Simpan</button>
                 <button type="button" class="bg-red-500 text-white py-2 px-4 rounded-lg" onclick="confirmBack()">Kembali</button>
 
@@ -91,15 +98,32 @@
 </div>
 
 <!-- Alert Berhasil Menambahkan Produk -->
-<div id="successAlert" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+<@if (session('success'))
+<div id="successAlert" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/3 lg:w-1/4 relative">
         <h2 class="text-xl font-semibold mb-4">Berhasil Menambahkan Produk</h2>
-        <p class="mb-4">Produk berhasil ditambahkan. Cek di dashboard.</p>
+        <p class="mb-4">{{ session('success') }}</p>
         <div class="flex justify-end">
             <a href="/dashboardtoko" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Cek Dashboard</a>
         </div>
     </div>
 </div>
+@endif
+@if ($errors->any())
+    <div id="errorAlert" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg w-11/12 md:w-1/3 lg:w-1/4 relative">
+            <h2 class="text-xl font-semibold mb-4">Terjadi Kesalahan</h2>
+            <ul class="mb-4 text-red-600">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <div class="flex justify-end">
+                <button class="bg-gray-500 text-white py-2 px-4 rounded-lg" onclick="closeModal('errorAlert')">Tutup</button>
+            </div>
+        </div>
+    </div>
+@endif
 
 @endsection
 

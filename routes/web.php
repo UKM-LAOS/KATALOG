@@ -38,6 +38,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
 Route::middleware(['auth', 'role:Toko'])->group(function () {
     Route::get('/dashboardtoko', [TokoController::class, 'dashboard'])->name('dashboardToko');
     Route::get('/profiltoko', [TokoController::class, 'profile'])->name('profilToko');
+    Route::put('/profiltoko/{id}', [TokoController::class, 'profileEdit'])->name('profilTokoEdit');
     Route::get('/tambahproduk', [TokoController::class, 'createProductView']);
     Route::post('/tambahproduk', [TokoController::class, 'createProduct'])->name('tambahProduct');
 });
