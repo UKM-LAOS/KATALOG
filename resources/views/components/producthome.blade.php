@@ -9,7 +9,7 @@
                         <div class="relative p-4 flex-grow">
                             <div class="absolute top-2 right-2">
                                 <div
-                                    class="ml-2 vh py-1 px-2 text-sans tracking-wider text-1.2 text-white bg-iconstyle rounded-full">
+                                    class="ml-2 vh py-2 px-2 text-sans tracking-wider text-1.2 text-white bg-iconstyle rounded-full">
                                     {{ $data->kategori->kategori }}
                                 </div>
                             </div>
@@ -26,8 +26,8 @@
                                 {{ number_format($data->hargaproduk, 0, ',', '.') }}</div>
                         </div>
                         <div class="p-4">
-                            <button
-                                class="w-full h-10 text-sans tracking-wider text-1.6 text-white bg-bluebut bg-iconstyle rounded-2xl cursor-pointer hover:bg-hvrblue">Detail</button>
+                            <a href="/detail-product-guest/{{ $data->id }}"
+                                class="block text-center bg-iconstyle text-white py-2 rounded-lg">Detail</a>
                         </div>
                     </div>
                 @endforeach
