@@ -25,6 +25,7 @@ class ProfilTokoRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => ['string','max:255'],
             'email' =>  ['sometimes','min:5', 'email', Rule::unique('users', 'email')->ignore(Auth::id())],
             'password' => ['sometimes','min:8', 'max:255', 'nullable', 'string', 'confirmed'],
             'namatoko' => ['string','max:255'],

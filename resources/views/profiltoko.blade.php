@@ -3,17 +3,6 @@
 @section('title', 'Profil Admin')
 
 @section('content')
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Sukses!',
-        text: '{{ session('success') }}',
-        timer: 2000, 
-        showConfirmButton: false
-    });
-</script>
-@endif
     <div class=" bg-white rounded-lg px-3 py-2 shadow-md mx-auto">
         <div class="flex flex-col">
             <div class="flex items-center justify-between mb-6">
@@ -45,14 +34,28 @@
             <h2 class="text-xl font-semibold mb-4">Edit Profil</h2>
 
             <!-- Form Update Profil -->
-            <form action="{{route('profilTokoEdit', $user->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('profilTokoEdit', $user->id)}}" id="profileForm" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+
+                <!-- Input Name -->
+                <div class="mb-4">
+                    <label for="Nama" class="block text-gray-700 font-semibold mb-2">Nama</label>
+                    <input type="text" id="nama" name="nama"
+                        class="w-full border border-gray-300 p-2 rounded-md @error('nama') border-red-500 @enderror"
+                        value="{{ old('nama', $user->name) }}" required>
+
+                    @error('nama')
+                    <div class="text-red-500 text-sm mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
 
                 <!-- Input Email -->
                 <div class="mb-4">
                     <label for="emailToko" class="block text-gray-700 font-semibold mb-2">Email</label>
-                    <input type="email" id="email" name="email"
+                    <input type="text" id="email" name="email"
                         class="w-full border border-gray-300 p-2 rounded-md @error('email') border-red-500 @enderror"
                         value="{{ old('email', $user->email) }}" required>
 
@@ -62,7 +65,7 @@
                     </div>
                     @enderror
                 </div>
-
+                
                 <!-- Input Password -->
                 <div class="mb-4">
                     <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
@@ -104,9 +107,6 @@
                     @if($user->toko->fototoko)
                     <img src="{{ asset('storage/' . $user->toko->fototoko) }}" alt="Gambar Tempat" class="mt-2" width="150">
                     @endif
-                    {{-- <input type="file" id="fototoko" name="fototoko"
-                        class="w-full border border-gray-300 p-2 rounded-md @error('fototoko') border-red-500 @enderror"
-                        value="{{ old('fototoko', $user->toko->fototoko) }}" required> --}}
 
                     @error('fototoko')
                     <div class="text-red-500 text-sm mt-2">
@@ -149,6 +149,43 @@
             </form>
         </div>
     </div>
+    @if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Sukses!',
+        text: '{{ session('success') }}',
+        timer: 2000, 
+        showConfirmButton: false
+    });
+</script>
+@endif
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const profileForm = document.getElementById('profileForm');
+        const emailInput = document.getElementById('email');
+        const originalEmail = "{{ $user->email }}";
+
+        profileForm.addEventListener('submit', function (e) {
+            if (emailInput.value !== originalEmail) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Konfirmasi Perubahan Email',
+                    text: "Anda telah mengubah email. Pastikan email yang baru benar karena akan digunakan untuk semua notifikasi.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Lanjutkan',
+                    cancelButtonText: 'Batalkan'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        profileForm.submit(); 
+                    }
+                });
+            }
+        });
+    });
+</script>
 @endsection
 
 <script>
