@@ -15,7 +15,7 @@
             'id' => $produkItem->id,
             'nama' => $produkItem->namaproduk,
             'harga' => $produkItem->hargaproduk,
-            'status' => $produkItem->statusdisplay,
+            'status' => $produkItem->statusdisplay == 1 ? 'Pending' : ($produkItem->statusdisplay == 2 ? 'Terdisplay' : 'Error'),
             'tanggal' => $produkItem->tglposting,
         ];
     }
@@ -67,13 +67,13 @@
             Swal.fire({
                 title: 'Ubah Produk',
                 html: `
-                    <input type="text" id="nama-produk" class="swal2-input" value="${product.nama}" placeholder="Nama Produk">
-                    <input type="number" id="harga-produk" class="swal2-input" value="${product.harga}" placeholder="Harga Produk">
-                    <select id="status-produk" class="h-[3.4rem] bg-white mt-[1em] mb-[3px] pl-[1rem] w-[20.4rem] border border-[rgb(217,217,217)] rounded-md">
-                        <option value="display" ${product.status === 'display' ? 'selected' : ''}>Display</option>
-                        <option value="undisplay" ${product.status === 'undisplay' ? 'selected' : ''}>Undisplay</option>
-                    </select>   
-                `,
+            <input type="text" id="nama-produk" class="swal2-input" value="${product.nama}" placeholder="Nama Produk">
+            <input type="number" id="harga-produk" class="swal2-input" value="${product.harga}" placeholder="Harga Produk">
+            <select id="status-produk" class="h-[3.4rem] bg-white mt-[1em] mb-[3px] pl-[1rem] w-[20.4rem] border border-[rgb(217,217,217)] rounded-md">
+                <option value="display" ${product.status === 'display' ? 'selected' : ''}>Display</option>
+                <option value="undisplay" ${product.status === 'undisplay' ? 'selected' : ''}>Undisplay</option>
+            </select>   
+        `,
                 showCancelButton: true,
                 confirmButtonText: 'Simpan',
                 showLoaderOnConfirm: true,
@@ -96,8 +96,22 @@
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    console.log('Updated product:', result.value);
-                    Swal.fire('Berhasil!', 'Produk berhasil diubah.', 'success');
+                    fetch("{{ route('produk.update') }}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: JSON.stringify(result.value)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire('Berhasil!', 'Produk berhasil diubah.', 'success').then(() => location
+                                    .reload());
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
                 }
             });
         }
@@ -112,8 +126,20 @@
                 cancelButtonText: 'Batal',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    console.log('Deleted product ID:', result.value);
-                    Swal.fire('Dihapus!', 'Produk berhasil dihapus.', 'success');
+                    fetch(`{{ url('/produk/delete') }}/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire('Dihapus!', 'Produk berhasil dihapus.', 'success').then(() => location
+                                    .reload());
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
                 }
             });
         }

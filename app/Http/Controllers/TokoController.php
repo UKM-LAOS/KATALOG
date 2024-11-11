@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\ProfilTokoRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,72 +21,72 @@ class TokoController extends Controller
         $produk_terdisplay = Produk::with('kategori')->where('statusdisplay', 2)->count();
         $produks = Produk::all();
 
-        
+
         return view('dashboardToko', compact('produks', 'jumlah', 'produk_pending', 'produk_terdisplay'));
     }
 
-    
+
     public function createProduct(Request $request)
-{
-    // Validasi input
-    $user = Auth::user();
-    $tokoId = $user->toko ? $user->toko->id : null;
-    // dd($request->all());
+    {
+        // Validasi input
+        $user = Auth::user();
+        $tokoId = $user->toko ? $user->toko->id : null;
+        // dd($request->all());
 
-    $request->validate([
-        'namaproduk' => [
-            'required',
-            'string',
-            'max:255',
-            Rule::unique('produks')->where(function ($query) use ($request) {
-                return $query->where('idtoko', $request->idtoko); //logic ini bwat ngecek produk unique di toko yang sama
-            }),
+        $request->validate([
+            'namaproduk' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('produks')->where(function ($query) use ($request) {
+                    return $query->where('idtoko', $request->idtoko); //logic ini bwat ngecek produk unique di toko yang sama
+                }),
 
-            
-        ],
-        'hargaproduk' => 'required|numeric',
-        'overviewproduk' => 'required|string',
-        'deskripsiproduk' => 'required|string',
-        'linkproduk' => 'required|url',
-        'fotoproduk' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'idkategori' => 'required|exists:kategoris,id',
-        'statusdisplay' => 'required|in:1,0',
-    ],  [
-        
-        'namaproduk.unique' => 'Nama produk sudah ada, jangan mendua!'
-        
-    ]);
-    
 
-    
-    $imageName = time() . '.' . $request->fotoproduk->extension(); 
-    $request->fotoproduk->move(public_path('images/stores'), $imageName);//set direc
+            ],
+            'hargaproduk' => 'required|numeric',
+            'overviewproduk' => 'required|string',
+            'deskripsiproduk' => 'required|string',
+            'linkproduk' => 'required|url',
+            'fotoproduk' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'idkategori' => 'required|exists:kategoris,id',
+            'statusdisplay' => 'required|in:1,0',
+        ],  [
 
-    
-    Produk::create([
-        'namaproduk' => $request->namaproduk,
-        'hargaproduk' => $request->hargaproduk,
-        'overviewproduk' => $request->overviewproduk,
-        'deskripsiproduk' => $request->deskripsiproduk,
-        'linkproduk' => $request->linkproduk,
-        'fotoproduk' => 'img/' . $imageName, 
-        'idtoko' => $tokoId,
-        'idkategori' => $request->idkategori,
-        'tglposting' => now(),
-        'statusdisplay' => $request->statusdisplay,
-    ]);
+            'namaproduk.unique' => 'Nama produk sudah ada, jangan mendua!'
+
+        ]);
 
 
 
-    return redirect()->back()->with('success', 'Produk berhasil ditambahkan');
-}
+        $imageName = time() . '.' . $request->fotoproduk->extension();
+        $request->fotoproduk->move(public_path('images/stores'), $imageName); //set direc
+
+
+        Produk::create([
+            'namaproduk' => $request->namaproduk,
+            'hargaproduk' => $request->hargaproduk,
+            'overviewproduk' => $request->overviewproduk,
+            'deskripsiproduk' => $request->deskripsiproduk,
+            'linkproduk' => $request->linkproduk,
+            'fotoproduk' => 'img/' . $imageName,
+            'idtoko' => $tokoId,
+            'idkategori' => $request->idkategori,
+            'tglposting' => now(),
+            'statusdisplay' => $request->statusdisplay,
+        ]);
+
+
+
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan');
+    }
 
     public function profile()
     {
         $user = Auth::user()->load('toko');
         return view('profilToko', compact('user'));
     }
-    
+
     public function profileEdit(ProfilTokoRequest $request, $id)
     {
         $user = User::findOrFail($id);
@@ -107,11 +108,38 @@ class TokoController extends Controller
         if ($user->isDirty() || $toko->isDirty()) {
             $user->save();
             $toko->save();
-            
+
             return redirect()->route('profilToko')->with('success', 'Profil berhasil diperbarui');
         }
         return redirect()->route('profilToko');
     }
+
+    public function updateProduct(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:produks,id',
+            'nama' => 'required|string|max:255',
+            'harga' => 'required|numeric',
+            'status' => 'required|in:display,undisplay'
+        ]);
+
+        $product = Produk::findOrFail($request->id);
+        $product->namaproduk = $request->nama;
+        $product->hargaproduk = $request->harga;
+        $product->statusdisplay = $request->status === 'display' ? 1 : 0;
+        $product->save();
+
+        return response()->json(['success' => true, 'message' => 'Produk berhasil diubah']);
+    }
+
+    public function deleteProduct($id)
+    {
+        $product = Produk::findOrFail($id);
+        $product->delete();
+
+        return response()->json(['success' => true, 'message' => 'Produk berhasil dihapus']);
+    }
+
 
     public function createProductview()
     {

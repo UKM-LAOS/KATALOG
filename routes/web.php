@@ -41,6 +41,8 @@ Route::middleware(['auth', 'role:Toko'])->group(function () {
     Route::put('/profiltoko/{id}', [TokoController::class, 'profileEdit'])->name('profilTokoEdit');
     Route::get('/tambahproduk', [TokoController::class, 'createProductView']);
     Route::post('/tambahproduk', [TokoController::class, 'createProduct'])->name('tambahProduct');
+    Route::post('/produk/update', [TokoController::class, 'updateProduct'])->name('produk.update');
+    Route::delete('/produk/delete/{id}', [TokoController::class, 'deleteProduct'])->name('produk.delete');
 });
 
 // Route::get('/login', function () {
