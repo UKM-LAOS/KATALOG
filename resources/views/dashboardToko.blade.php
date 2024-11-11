@@ -4,24 +4,23 @@
 
 @php
     $stats = [
-        ['title' => 'Produk Terdaftar', 'value' => 60],
-        ['title' => 'Produk Pending', 'value' => 100],
-        ['title' => 'Produk Terdisplay', 'value' => 50],
-    ];
-    $produk = [
-        ['id' => 1, 'nama' => 'Produk 1', 'harga' => 10000, 'status' => 'display', 'tanggal' => '2023-10-01'],
-        ['id' => 2, 'nama' => 'Produk 2', 'harga' => 20000, 'status' => 'undisplay', 'tanggal' => '2023-10-02'],
-        ['id' => 3, 'nama' => 'Produk 3', 'harga' => 30000, 'status' => 'display', 'tanggal' => '2023-10-03'],
-        ['id' => 4, 'nama' => 'Produk 4', 'harga' => 40000, 'status' => 'undisplay', 'tanggal' => '2023-10-04'],
-        ['id' => 5, 'nama' => 'Produk 5', 'harga' => 50000, 'status' => 'display', 'tanggal' => '2023-10-05'],
-        ['id' => 6, 'nama' => 'Produk 6', 'harga' => 60000, 'status' => 'display', 'tanggal' => '2023-10-06'],
-        ['id' => 7, 'nama' => 'Produk 7', 'harga' => 70000, 'status' => 'undisplay', 'tanggal' => '2023-10-07'],
-        ['id' => 8, 'nama' => 'Produk 8', 'harga' => 80000, 'status' => 'display', 'tanggal' => '2023-10-08'],
-        ['id' => 9, 'nama' => 'Produk 9', 'harga' => 90000, 'status' => 'undisplay', 'tanggal' => '2023-10-09'],
-        ['id' => 10, 'nama' => 'Produk 10', 'harga' => 100000, 'status' => 'display', 'tanggal' => '2023-10-10'],
+        ['title' => 'Produk Terdaftar', 'value' => $jumlah],
+        ['title' => 'Produk Pending', 'value' => $produk_pending],
+        ['title' => 'Produk Terdisplay', 'value' => $produk_terdisplay],
     ];
 
+    $produk = [];
+    foreach ($produks as $produkItem) {
+        $produk[] = [
+            'id' => $produkItem->id,
+            'nama' => $produkItem->namaproduk,
+            'harga' => $produkItem->hargaproduk,
+            'status' => $produkItem->statusdisplay,
+            'tanggal' => $produkItem->tglposting,
+        ];
+    }
 @endphp
+
 @section('content')
     <div class="grid grid-flow-col grid-cols-3 h-full w-full gap-[8rem]">
         @foreach ($stats as $stat)
@@ -31,7 +30,6 @@
             </div>
         @endforeach
     </div>
-
 
     <div class="mt-2">
         <h1 class="text-2xl font-semibold">Produk</h1>
@@ -98,7 +96,6 @@
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Logic Update
                     console.log('Updated product:', result.value);
                     Swal.fire('Berhasil!', 'Produk berhasil diubah.', 'success');
                 }
@@ -117,10 +114,8 @@
                 if (result.isConfirmed) {
                     console.log('Deleted product ID:', result.value);
                     Swal.fire('Dihapus!', 'Produk berhasil dihapus.', 'success');
-                    // Logic Delete
                 }
             });
         }
     </script>
-
 @endsection
