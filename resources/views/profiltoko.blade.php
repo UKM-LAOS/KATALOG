@@ -31,28 +31,14 @@
             <h2 class="text-xl font-semibold mb-4">Edit Profil</h2>
 
             <!-- Form Update Profil -->
-            <form action="{{route('profilTokoEdit', $user->id)}}" id="profileForm" method="post" enctype="multipart/form-data">
+            {{-- <form action="{{route('profiladmin.update', $user->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-
-                <!-- Input Name -->
-                <div class="mb-4">
-                    <label for="Nama" class="block text-gray-700 font-semibold mb-2">Nama</label>
-                    <input type="text" id="nama" name="nama"
-                        class="w-full border border-gray-300 p-2 rounded-md @error('nama') border-red-500 @enderror"
-                        value="{{ old('nama', $user->name) }}" required>
-
-                    @error('nama')
-                    <div class="text-red-500 text-sm mt-2">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
 
                 <!-- Input Email -->
                 <div class="mb-4">
                     <label for="emailToko" class="block text-gray-700 font-semibold mb-2">Email</label>
-                    <input type="text" id="email" name="email"
+                    <input type="email" id="email" name="email"
                         class="w-full border border-gray-300 p-2 rounded-md @error('email') border-red-500 @enderror"
                         value="{{ old('email', $user->email) }}" required>
 
@@ -63,7 +49,7 @@
                     </div>
                     @enderror
                 </div>
-                
+
                 <!-- Input Password -->
                 <div class="mb-4">
                     <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
@@ -86,55 +72,6 @@
                         class="w-full border border-gray-300 p-2 rounded-md" disabled>
                 </div>
 
-                    @error('namatoko')
-                    <div class="text-red-500 text-sm mt-2">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
-                 <!-- Input Foto Toko -->
-                 <div class="mb-4">
-                    <label for="fototoko" class="block text-gray-700 font-semibold mb-2">Foto Toko</label>
-                    <input type="file" name="fototoko" id="fototoko" />
-                    @if($user->toko->fototoko)
-                    <img src="{{ asset('storage/' . $user->toko->fototoko) }}" alt="Gambar Tempat" class="mt-2" width="150">
-                    @endif
-
-                    @error('fototoko')
-                    <div class="text-red-500 text-sm mt-2">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
-                 <!-- Input Link Toko -->
-                 <div class="mb-4">
-                    <label for="linktoko" class="block text-gray-700 font-semibold mb-2">Link Toko</label>
-                    <input type="text" id="linktoko" name="linktoko"
-                        class="w-full border border-gray-300 p-2 rounded-md @error('linktoko') border-red-500 @enderror"
-                        value="{{ old('linktoko', $user->toko->linktoko) }}" required>
-
-                    @error('linktoko')
-                    <div class="text-red-500 text-sm mt-2">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
-                <!--Input Deskripsi Toko -->
-                <div class="mb-4">
-                    <label for="deskripsitoko" class="block text-gray-700 font-semibold mb-2">Deskripsi Toko</label>
-                    <textarea type="text" id="deskripsitoko" name="deskripsitoko"
-                        class="w-full border border-gray-300 p-2 rounded-md" cols="30" rows="10"
-                      required>{{ old('deskripsitoko', $user->toko->deskripsitoko) }} 
-                    </textarea>
-                    @error('deskripsitoko')
-                    <div class="text-red-500 text-sm mt-2">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
                 <!-- Tombol Simpan -->
                 <div class="flex justify-end">
                     <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Simpan</button>
@@ -142,43 +79,6 @@
             </form> --}}
         </div>
     </div>
-    @if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Sukses!',
-        text: '{{ session('success') }}',
-        timer: 2000, 
-        showConfirmButton: false
-    });
-</script>
-@endif
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const profileForm = document.getElementById('profileForm');
-        const emailInput = document.getElementById('email');
-        const originalEmail = "{{ $user->email }}";
-
-        profileForm.addEventListener('submit', function (e) {
-            if (emailInput.value !== originalEmail) {
-                e.preventDefault();
-
-                Swal.fire({
-                    title: 'Konfirmasi Perubahan Email',
-                    text: "Anda telah mengubah email. Pastikan email yang baru benar karena akan digunakan untuk semua notifikasi.",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Lanjutkan',
-                    cancelButtonText: 'Batalkan'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        profileForm.submit(); 
-                    }
-                });
-            }
-        });
-    });
-</script>
 @endsection
 
 <script>
