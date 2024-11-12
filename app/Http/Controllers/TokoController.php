@@ -16,11 +16,11 @@ class TokoController extends Controller
 {
     public function dashboard()
     {
-        $jumlah = Produk::count();
-        $produk_pending = Produk::with('kategori')->where('statusdisplay', 1)->count();
-        $produk_terdisplay = Produk::with('kategori')->where('statusdisplay', 2)->count();
-        $produks = Produk::all();
-
+        $user = Auth::id();
+        $jumlah = Produk::where('id', $user)->count();
+        $produk_pending = Produk::where('id', $user)->with('kategori')->where('statusdisplay', 1)->count();
+        $produk_terdisplay = Produk::where('id', $user)->with('kategori')->where('statusdisplay', 2)->count();
+        $produks = Produk::where('id', $user)->get();
 
         return view('dashboardToko', compact('produks', 'jumlah', 'produk_pending', 'produk_terdisplay'));
     }
