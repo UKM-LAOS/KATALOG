@@ -11,7 +11,7 @@ class PageController extends Controller
     public function homepage()
     {
         $Terpopuler = Produk::with('kategori')
-            ->where('statusdisplay', 1)
+            ->where('statusdisplay', 2)
             ->orderByDesc('totalklik')
             ->limit(3)
             ->get();
@@ -20,7 +20,7 @@ class PageController extends Controller
     public function product()
     {
         $produks = Produk::with('kategori')->get();
-        $categories = Kategori::get(); 
+        $categories = Kategori::get();
         return view('product', compact('produks', 'categories'));
     }
 
@@ -41,14 +41,14 @@ class PageController extends Controller
                 $query->orderBy('hargaproduk', 'asc');
             }
         }
-    
+
         if ($request->has('kategori_id')) {
             $query->where('idkategori', $request->kategori_id);
         }
-    
+
         $produks = $query->get();
         $categories = Kategori::all();
-    
+
         return view('product', compact('produks', 'categories'));
 
     }
